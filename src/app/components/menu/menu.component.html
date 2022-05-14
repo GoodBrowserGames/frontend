@@ -2,7 +2,7 @@
     <span class="navbar-brand mb-0 h1">GoodBrowserGames</span>
     
     <div class="navbar-expand">
-        <div class="navbar-nav justify-content-end">
+        <div class="navbar-nav justify-content-end" *ngIf="!authService.isAuthenticated()">
             <div class="nav-item">
                 <a class="nav-link text-dark" role="button" routerLink="/login">Login</a>
             </div>
@@ -10,7 +10,7 @@
                 <a role="button" class="nav-link text-dark" routerLink="/cadastro">Cadastro</a>
             </div>
         </div>
-        <div class="navbar-nav justify-content-end">
+        <div class="navbar-nav justify-content-end" *ngIf="authService.isAuthenticated()">
             <div class="nav-item">
                 <a role="button" class="nav-link text-dark"  routerLink="">Pagina Inicial</a>
             </div>
