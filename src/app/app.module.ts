@@ -8,6 +8,8 @@ import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { PaginaInicialComponent } from './pages/pagina-inicial/pagina-inicial.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
+import { PerfilDadosComponent } from './components/perfil-dados/perfil-dados.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { PaginaInicialComponent } from './pages/pagina-inicial/pagina-inicial.co
     MenuComponent,
     FooterComponent,
     CadastroComponent,
-    PaginaInicialComponent
+    PaginaInicialComponent,
+    PerfilComponent,
+    PerfilDadosComponent
   ],
   imports: [
     BrowserModule,
