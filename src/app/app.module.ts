@@ -10,6 +10,8 @@ import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { PaginaInicialComponent } from './pages/pagina-inicial/pagina-inicial.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { PerfilDadosComponent } from './components/perfil-dados/perfil-dados.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { PerfilDadosComponent } from './components/perfil-dados/perfil-dados.com
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

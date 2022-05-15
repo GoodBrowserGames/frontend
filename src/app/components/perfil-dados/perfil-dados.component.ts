@@ -10,6 +10,7 @@ export class PerfilDadosComponent implements OnInit {
 
   usuario: Usuario = {
     nome: 'nome',
+    email: 'email@email.com',
     userName: 'userName',
     senha: 'senha',
     dataNascimento: '14/05/2022',
