@@ -51,8 +51,7 @@ export class CadastroComponent implements OnInit {
         }
       }
     ) 
-  }
-  
+  }  
 
   validaUsuario() {
     return (this.validService.validaCampos(this.usuario) && this.validService.validaEmail(this.usuario.email) ) && this.cadastrando

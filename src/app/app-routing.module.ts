@@ -13,7 +13,7 @@ const routes: Routes = [
 
   { path: "", component: PaginaInicialComponent, canActivate: [AuthGuard], children: [
     { path: "atualiza-perfil", component: AtualizarPerfilComponent, canActivate: [AuthGuard] },
-    { path: "perfil", component: PerfilDadosComponent, canActivate: [AuthGuard] },
+    { path: "", component: PerfilDadosComponent, canActivate: [AuthGuard] },
   ] },
 
   { path: '**', redirectTo: '' }
