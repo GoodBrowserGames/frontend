@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
     dataNascimento: '',
     estado: '',
     pais: '',
-    email: ''
+    email: '',
+    ehAdmin: ''
   }
   logando: boolean = true;
 

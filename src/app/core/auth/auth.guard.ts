@@ -28,7 +28,6 @@ export class AuthGuard implements CanActivate {
   getUsuario() {
     var retrievedObject: any = localStorage.getItem('usuario');
     var usuario = JSON.parse(retrievedObject)
-    usuario.dataNascimento = this.dateService.formatarDataComTraco(usuario.dataNascimento)
     return usuario;
   }
   

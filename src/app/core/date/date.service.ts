@@ -11,10 +11,4 @@ export class DateService {
     var aux = data.split('-');
     return `${aux[2]}/${aux[1]}/${aux[0]}`
   }
-
-  formatarDataComTraco(data: any): any {
-    var aux = data.split('/');
-    return `${aux[2]}-${aux[1]}-${aux[0]}`
-
-  }
 }

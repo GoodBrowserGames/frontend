@@ -18,6 +18,7 @@ export class PerfilDadosComponent implements OnInit {
     estado: '',
     pais: '',
     email: '',
+    ehAdmin: 'false'
   };
 
   constructor(

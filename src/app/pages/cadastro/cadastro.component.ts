@@ -19,10 +19,11 @@ export class CadastroComponent implements OnInit {
     dataNascimento: '',
     estado: '',
     pais: '',
-    email: ''
+    email: '',
+    ehAdmin: 'false'
   }
-
   cadastrando: boolean = true;
+  isAdmin = false;
 
   constructor(
     private dateService: DateService,
@@ -36,8 +37,9 @@ export class CadastroComponent implements OnInit {
 
   cadastro() {
     this.cadastrando = false;
-    this.usuario.dataNascimento = this.dateService.formatarDataComBarra(this.usuario.dataNascimento)
-    var payload = this.usuario
+    this.usuario.ehAdmin = this.isAdmin.toString()
+    this.usuario.dataNascimento = this.usuario.dataNascimento
+    var payload = this.usuario;
 
     this.usuarioService.cadastro(payload).subscribe(
       (result) => {
@@ -54,7 +56,8 @@ export class CadastroComponent implements OnInit {
   }  
 
   validaUsuario() {
-    return (this.validService.validaCampos(this.usuario) && this.validService.validaEmail(this.usuario.email) ) && this.cadastrando
+    return (this.validService.validaCampos(this.usuario) && this.validService.validaEmail(this.usuario.email) ) 
+      && this.cadastrando
   }
 
 }

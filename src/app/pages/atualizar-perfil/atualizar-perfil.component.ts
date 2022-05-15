@@ -20,6 +20,7 @@ export class AtualizarPerfilComponent implements OnInit {
     estado: '',
     pais: '',
     email: '',
+    ehAdmin: '',
   };
   atualizando = false;
 
@@ -40,13 +41,14 @@ export class AtualizarPerfilComponent implements OnInit {
       nome: this.usuario.nome,
       userName: this.usuario.userName,
       senha: this.usuario.senha,
-      dataNascimento: this.dateService.formatarDataComBarra(this.usuario.dataNascimento),
+      dataNascimento: this.usuario.dataNascimento,
       estado: this.usuario.estado,
       pais: this.usuario.pais,
-      email: this.usuario.email
+      email: this.usuario.email,
+      ehAdmin: this.usuario.ehAdmin === null ? 'false' : this.usuario.ehAdmin 
     }  
 
-    console.log(payload);    
+    //console.log(payload);    
 
     this.usuarioService.atualizar(payload).subscribe(
       (result) => {

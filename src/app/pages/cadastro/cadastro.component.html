@@ -17,21 +17,22 @@
                     <div class="form-outline mb-4">
                         <label class="form-label" for="formEmail">Email</label>
                         <input type="email" id="formEmail" class="form-control form-control-lg"
-                            [(ngModel)]="usuario.email"/>
+                            [(ngModel)]="usuario.email" />
                     </div>
 
                     <!-- UserName input -->
                     <div class="form-outline mb-4">
                         <label class="form-label" for="formUserName">Nome do usuário</label>
                         <input type="text" id="formUserName" class="form-control form-control-lg"
-                            [(ngModel)]="usuario.userName"  autocomplete="off" onkeypress="return event.charCode != 32"/>
+                            [(ngModel)]="usuario.userName" autocomplete="off"
+                            onkeypress="return event.charCode != 32" />
                     </div>
 
                     <!-- Senha input -->
                     <div class="form-outline mb-4">
                         <label class="form-label" for="formSenha">Senha</label>
                         <input type="password" id="formSenha" class="form-control form-control-lg"
-                            [(ngModel)]="usuario.senha" autocomplete="off"/>
+                            [(ngModel)]="usuario.senha" autocomplete="off" />
                     </div>
 
                     <!-- Data de nascimento input -->
@@ -51,8 +52,8 @@
                             </div>
                         </div>
                         <div class="col">
-                            
-        
+
+
                             <!-- País input -->
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="formPais">País</label>
@@ -60,6 +61,10 @@
                                     [(ngModel)]="usuario.pais" />
                             </div>
                         </div>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" [(ngModel)]="isAdmin" id="formAdmin">
+                        <label class="form-check-label" for="formAdmin">Se tornar administrador</label>
                     </div>
 
                     <div class="d-flex justify-content-around align-items-center mb-4">

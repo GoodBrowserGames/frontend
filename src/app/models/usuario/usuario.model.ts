@@ -7,6 +7,7 @@ export class Usuario {
     estado: string;
     pais: string;
     email: string;
+    ehAdmin: string;
 
     constructor(
         nome: string, 
@@ -15,7 +16,8 @@ export class Usuario {
         dataNascimento: string,
         estado: string,
         pais: string,
-        email: string
+        email: string,
+        ehAdmin: string
         ) {
         this.nome = nome;
         this.userName = userName;
@@ -24,5 +26,6 @@ export class Usuario {
         this.estado = estado;
         this.pais = pais;
         this.email = email;
+        this.ehAdmin = ehAdmin;
     }
 }
