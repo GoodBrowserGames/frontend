@@ -12,6 +12,8 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { PerfilDadosComponent } from './components/perfil-dados/perfil-dados.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
+import { PerfilMenuComponent } from './components/perfil-menu/perfil-menu.component';
+import { AtualizarPerfilComponent } from './pages/atualizar-perfil/atualizar-perfil.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { HttpClientModule } from "@angular/common/http";
     CadastroComponent,
     PaginaInicialComponent,
     PerfilComponent,
-    PerfilDadosComponent
+    PerfilDadosComponent,
+    PerfilMenuComponent,
+    AtualizarPerfilComponent
   ],
   imports: [
     BrowserModule,

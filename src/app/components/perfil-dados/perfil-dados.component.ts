@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { AuthGuard } from 'src/app/core/auth/auth.guard';
+import { DateService } from 'src/app/core/date/date.service';
 import { Usuario } from 'src/app/models/usuario/usuario.model';
 
 @Component({
@@ -9,18 +11,23 @@ import { Usuario } from 'src/app/models/usuario/usuario.model';
 export class PerfilDadosComponent implements OnInit {
 
   usuario: Usuario = {
-    nome: 'nome',
-    email: 'email@email.com',
-    userName: 'userName',
-    senha: 'senha',
-    dataNascimento: '14/05/2022',
-    estado: 'São Paulo',
-    pais: 'Brasil'
-  }
+    nome: '',
+    userName: '',
+    senha: '',
+    dataNascimento: '',
+    estado: '',
+    pais: '',
+    email: '',
+  };
 
-  constructor() { }
+  constructor(
+    private authGuard: AuthGuard,
+    private dateService: DateService,
+    ) { }
 
   ngOnInit(): void {
+    this.usuario  = this.authGuard.getUsuario();  
+    this.usuario.dataNascimento = this.dateService.formatarDataComBarra(this.usuario.dataNascimento)
   }
 
 }

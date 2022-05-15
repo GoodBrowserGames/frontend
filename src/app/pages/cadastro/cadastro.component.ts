@@ -36,7 +36,7 @@ export class CadastroComponent implements OnInit {
 
   cadastro() {
     this.cadastrando = false;
-    this.usuario.dataNascimento = this.dateService.formatarData(this.usuario.dataNascimento)
+    this.usuario.dataNascimento = this.dateService.formatarDataComBarra(this.usuario.dataNascimento)
     var payload = this.usuario
 
     this.usuarioService.cadastro(payload).subscribe(

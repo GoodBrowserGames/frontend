@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { DateService } from '../date/date.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(private router: Router, private authService: AuthService, private dateService: DateService) {
     
   }
 
@@ -22,6 +23,13 @@ export class AuthGuard implements CanActivate {
       this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } })
       return false;
     }
+  }
+
+  getUsuario() {
+    var retrievedObject: any = localStorage.getItem('usuario');
+    var usuario = JSON.parse(retrievedObject)
+    usuario.dataNascimento = this.dateService.formatarDataComTraco(usuario.dataNascimento)
+    return usuario;
   }
   
 }
