@@ -39,14 +39,6 @@ export class CadastroComponent implements OnInit {
     this.usuario.dataNascimento = this.dateService.formatarData(this.usuario.dataNascimento)
     var payload = this.usuario
 
-    //EMAIL NÃO PODE SER IGUAL
-
-    /* this.usuarioService.deletar(1).subscribe(
-      (result) => {
-        console.log(result);        
-      }
-    ); */
-
     this.usuarioService.cadastro(payload).subscribe(
       (result) => {
         console.log(result);
@@ -54,7 +46,8 @@ export class CadastroComponent implements OnInit {
           this.router.navigate(['login']);
           this.cadastrando = true;
         } else {
-          alert('Email já em uso');
+          alert('Email já em uso.');
+          this.cadastrando = true;
         }
       }
     ) 

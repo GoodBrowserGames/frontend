@@ -8,6 +8,6 @@ export class AuthService {
   constructor() { }
 
   isAuthenticated(): boolean {
-    return localStorage.getItem('email') !== null;
+    return localStorage.getItem('usuario') !== null;
   }
 }
