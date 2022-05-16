@@ -28,7 +28,7 @@
                 [(ngModel)]="usuario.dataNascimento" />
         </div>
 
-        <div class="col row">
+        <div class="row">
             <div class="col">
                 <!-- Estado input -->
                 <div class="form-outline mb-4">
@@ -37,9 +37,8 @@
                         [(ngModel)]="usuario.estado" />
                 </div>
             </div>
+            
             <div class="col">
-
-
                 <!-- País input -->
                 <div class="form-outline mb-4">
                     <label class="form-label" for="formPais">País</label>
@@ -48,6 +47,6 @@
             </div>
         </div>
 
-        <button [disabled]="atualizando" (click)="atualizar()" class="btn btn-primary">Confirmar</button>
+        <button [disabled]="!validaUsuario()" (click)="atualizar()" class="btn btn-primary">Confirmar</button>
     </div>
 </div>

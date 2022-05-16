@@ -12,20 +12,20 @@
                         <input type="text" id="formNome" class="form-control form-control-lg"
                             [(ngModel)]="usuario.nome" />
                     </div>
-
-                    <!-- Email input -->
-                    <div class="form-outline mb-4">
-                        <label class="form-label" for="formEmail">Email</label>
-                        <input type="email" id="formEmail" class="form-control form-control-lg"
-                            [(ngModel)]="usuario.email" />
-                    </div>
-
+                    
                     <!-- UserName input -->
                     <div class="form-outline mb-4">
                         <label class="form-label" for="formUserName">Nome do usuário</label>
                         <input type="text" id="formUserName" class="form-control form-control-lg"
                             [(ngModel)]="usuario.userName" autocomplete="off"
                             onkeypress="return event.charCode != 32" />
+                    </div>
+
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="formEmail">Email</label>
+                        <input type="email" id="formEmail" class="form-control form-control-lg"
+                            [(ngModel)]="usuario.email" />
                     </div>
 
                     <!-- Senha input -->
@@ -42,7 +42,7 @@
                             [(ngModel)]="usuario.dataNascimento" />
                     </div>
 
-                    <div class="col row">
+                    <div class="row">
                         <div class="col">
                             <!-- Estado input -->
                             <div class="form-outline mb-4">
@@ -51,9 +51,8 @@
                                     [(ngModel)]="usuario.estado" />
                             </div>
                         </div>
+
                         <div class="col">
-
-
                             <!-- País input -->
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="formPais">País</label>

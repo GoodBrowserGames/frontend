@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthGuard } from 'src/app/core/auth/auth.guard';
 import { DateService } from 'src/app/core/date/date.service';
+import { ValidService } from 'src/app/core/valid/valid.service';
 import { Usuario } from 'src/app/models/usuario/usuario.model';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
@@ -22,13 +23,13 @@ export class AtualizarPerfilComponent implements OnInit {
     email: '',
     ehAdmin: '',
   };
-  atualizando = false;
 
   constructor(
     private authGuard: AuthGuard,
     private dateService: DateService,
     private usuarioService: UsuarioService,
-    private router: Router
+    private router: Router,
+    private validService: ValidService
   ) { }
 
   ngOnInit(): void {
@@ -56,13 +57,17 @@ export class AtualizarPerfilComponent implements OnInit {
           localStorage.setItem('usuario', JSON.stringify(result))
           //this._usuario = result;  
           alert('Salvo com sucesso.')
-          this.atualizando = false;
         }
       }, (error) => {
         console.log();
         
       }
     )
+    
+  }
+
+  validaUsuario() {
+    return (this.validService.validaCampos(this.usuario) && this.validService.validaEmail(this.usuario.email) ) 
     
   }
 }
