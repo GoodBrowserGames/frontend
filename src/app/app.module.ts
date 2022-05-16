@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from "@angular/common/http";
 import { PerfilMenuComponent } from './components/perfil-menu/perfil-menu.component';
 import { AtualizarPerfilComponent } from './pages/atualizar-perfil/atualizar-perfil.component';
+import { CadastrarJogosComponent } from './pages/cadastrar-jogos/cadastrar-jogos.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -26,13 +28,15 @@ import { AtualizarPerfilComponent } from './pages/atualizar-perfil/atualizar-per
     PerfilComponent,
     PerfilDadosComponent,
     PerfilMenuComponent,
-    AtualizarPerfilComponent
+    AtualizarPerfilComponent,
+    CadastrarJogosComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
