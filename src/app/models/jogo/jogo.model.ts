@@ -1,6 +1,3 @@
-import { Categoria } from "../categoria/categoria.model";
-import { Usuario } from "../usuario/usuario.model";
-
 export class Jogo {
     id?: number;
     nome: string;
@@ -8,9 +5,9 @@ export class Jogo {
     urlJogo: string;
     nota: number;
     imagem: string;
+    categoriaId: number;
+    usuarioId: number;
 
-    categoria: Categoria;
-    usuario: Usuario;
 
     constructor(
         nome: string, 
@@ -18,15 +15,15 @@ export class Jogo {
         urlJogo: string,
         nota: number,
         imagem: string,
-        usuario: Usuario,
-        categoria: Categoria
+        categoriaId: number,
+        usuarioId: number
         ) {
         this.nome = nome;
         this.descricao = descricao;
         this.urlJogo = urlJogo;
         this.nota = nota;
         this.imagem = imagem;
-        this.categoria = categoria;
-        this.usuario = usuario;
+        this.categoriaId = categoriaId;
+        this.usuarioId = usuarioId;
     }
 }

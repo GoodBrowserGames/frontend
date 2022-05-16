@@ -9,6 +9,8 @@ export class Usuario {
     email: string;
     ehAdmin: string;
 
+    jogos?: any[] = [];
+
     constructor(
         nome: string, 
         userName: string, 
