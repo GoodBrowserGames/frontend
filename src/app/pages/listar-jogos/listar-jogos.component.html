@@ -1,0 +1,10 @@
+<div class="card m-2">
+    <div class="card-body">
+        <h5 class="card-title">Jogos</h5>
+        <div class="row">
+            <div *ngFor="let item of listaJogos" class="col-6">
+                <app-jogo [jogo]="item" class="row"></app-jogo>
+            </div>
+        </div>
+    </div>
+</div>

@@ -16,6 +16,10 @@ import { PerfilMenuComponent } from './components/perfil-menu/perfil-menu.compon
 import { AtualizarPerfilComponent } from './pages/atualizar-perfil/atualizar-perfil.component';
 import { CadastrarJogosComponent } from './pages/cadastrar-jogos/cadastrar-jogos.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ListarJogosComponent } from './pages/listar-jogos/listar-jogos.component';
+import { ListarCategoriasComponent } from './pages/listar-categorias/listar-categorias.component';
+import { ListarJogosRecomendadosComponent } from './pages/listar-jogos-recomendados/listar-jogos-recomendados.component';
+import { JogoComponent } from './components/jogo/jogo.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +34,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     PerfilMenuComponent,
     AtualizarPerfilComponent,
     CadastrarJogosComponent,
+    ListarJogosComponent,
+    ListarCategoriasComponent,
+    ListarJogosRecomendadosComponent,
+    JogoComponent,
   ],
   imports: [
     BrowserModule,
