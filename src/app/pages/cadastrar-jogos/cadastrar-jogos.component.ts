@@ -1,10 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthGuard } from 'src/app/core/auth/auth.guard';
 import { ValidService } from 'src/app/core/valid/valid.service';
 import { Categoria } from 'src/app/models/categoria/categoria.model';
 import { Jogo } from 'src/app/models/jogo/jogo.model';
-import { Usuario } from 'src/app/models/usuario/usuario.model';
 import { CategoriaService } from 'src/app/services/categoria/categoria.service';
 import { JogoService } from 'src/app/services/jogo/jogo.service';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
@@ -39,7 +37,7 @@ export class CadastrarJogosComponent implements OnInit {
     private authService: AuthGuard,
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
   }
 
   validaJogo() {
@@ -65,7 +63,7 @@ export class CadastrarJogosComponent implements OnInit {
         this.triggerCadastroJogo(_jogo);
         
       }, (error) => {
-        alert('Ocorreu um erro.')
+        alert('Não foi possível salvar categoria.')
         console.log(error);        
       }
     )
@@ -81,7 +79,7 @@ export class CadastrarJogosComponent implements OnInit {
         this.triggerAtualizaUsuario(result.id);
         this.resetaObjetos();
       }, (error) => {
-        alert('Ocorreu um erro.')
+        alert('Não foi possível salvar jogo.')
         console.log(error);
       }
     )
@@ -94,7 +92,7 @@ export class CadastrarJogosComponent implements OnInit {
       (result)=> {
         console.log(result);        
       }, (error) => {
-        alert('Ocorreu um erro.')
+        alert('Não foi possível adicionar jogo.')
         console.log(error);        
       }
     ) 
