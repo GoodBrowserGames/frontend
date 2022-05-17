@@ -5,9 +5,8 @@ export class Jogo {
     urlJogo: string;
     nota: number;
     imagem: string;
-    categoriaId: number;
-    usuarioId: number;
-
+    categoriaCodigo: string;
+    usuarioCodigo: string;
 
     constructor(
         nome: string, 
@@ -15,15 +14,15 @@ export class Jogo {
         urlJogo: string,
         nota: number,
         imagem: string,
-        categoriaId: number,
-        usuarioId: number
+        categoriaCodigo: string,
+        usuarioCodigo: string
         ) {
         this.nome = nome;
         this.descricao = descricao;
         this.urlJogo = urlJogo;
         this.nota = nota;
         this.imagem = imagem;
-        this.categoriaId = categoriaId;
-        this.usuarioId = usuarioId;
+        this.categoriaCodigo = categoriaCodigo;
+        this.usuarioCodigo = usuarioCodigo;
     }
 }

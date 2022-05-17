@@ -44,6 +44,9 @@ export class LoginComponent implements OnInit {
           alert('Email ou senhas inválidos.');
           this.logando = true;
         }
+      }, (error) => {
+        alert('Ocorreu um erro.')
+        console.log(error); 
       }
     )
   }

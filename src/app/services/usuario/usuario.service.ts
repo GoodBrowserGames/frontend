@@ -28,11 +28,11 @@ export class UsuarioService {
   }
 
   buscarPorId(id: any): Observable<any> {
-    return this.http.get<any>(`${this.urlServer}buscarPorId${id}`)
+    return this.http.get<any>(`${this.urlServer}buscarPorId/${id}`)
   }
 
   emailPessoa(email: any): Observable<any> {
-    return this.http.get<any>(`${this.urlServer}emailpessoa${email}`)
+    return this.http.get<any>(`${this.urlServer}emailpessoa/${email}`)
   }
 
   atualizar(usuario: any): Observable<any> {
@@ -41,5 +41,9 @@ export class UsuarioService {
 
   deletar(id: any): Observable<any> {
     return this.http.delete<any>(`${this.urlServer}deletar/${id}`)
+  }
+
+  atualizarJogos(idUsuario: any, idJogo: any): Observable<any> {
+    return this.http.get<any>(`${this.urlServer}atualizarJogos/${idUsuario}/${idJogo}`)
   }
 }
