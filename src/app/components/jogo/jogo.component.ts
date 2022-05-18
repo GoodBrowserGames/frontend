@@ -13,7 +13,7 @@ export class JogoComponent implements OnInit {
   @Input() jogo: any;
   @Input() relatorio: any;
   @Output() deleteRequest = new EventEmitter<string>();
-  autor: any = '';
+  userName: any = '';
   imageUrl: string = '';
   usuario: any;
   
@@ -33,7 +33,7 @@ export class JogoComponent implements OnInit {
     this.jogoService.obtertAutorAvaliacaoJogo(jogo).subscribe(
       (result) => {
         console.log(result);  
-        this.autor = result.nome;      
+        this.userName = result.userName;      
       }, (error) => {
         console.log(error);        
       }

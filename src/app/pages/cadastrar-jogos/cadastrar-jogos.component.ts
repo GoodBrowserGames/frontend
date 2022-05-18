@@ -45,10 +45,39 @@ export class CadastrarJogosComponent implements OnInit {
   }
 
   cadastro() {
-    this.triggerCadastroCategoria(this.categoria);
+    this.triggerVerificarCategoria(this.categoria);
   }
 
-  triggerCadastroCategoria(_categoria: any) {    
+  triggerVerificarCategoria(_categoria: any) {   
+    var payload = {
+      id: 0,
+      nome: _categoria.nome
+    } 
+    this.categoriaService.buscarPorNome(payload).subscribe(
+      (result) => {
+        if (result === null) {
+          this.triggerCadastroCategoria(this.categoria);          
+        } else {
+          var _jogo: Jogo = {
+            nome: this.jogo.nome,
+            descricao: this.jogo.descricao,
+            urlJogo: this.jogo.urlJogo,
+            nota: this.jogo.nota,
+            imagem: '',
+            categoriaCodigo: result.id.toString(),
+            usuarioCodigo: this.authService.getUsuario().id.toString()
+          }   
+          console.log(_jogo);
+          
+          this.triggerCadastroJogo(_jogo);
+        }
+      }, (error) => {
+        console.log(error);        
+      }
+    )    
+  }
+
+  triggerCadastroCategoria(_categoria: any) {
     this.categoriaService.cadastro(_categoria).subscribe(
       (result) => {      
         var _jogo: Jogo = {

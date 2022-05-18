@@ -7,6 +7,7 @@ import { Categoria } from 'src/app/models/categoria/categoria.model';
   providedIn: 'root'
 })
 export class CategoriaService {
+  
 
   urlServer = "https://app-good-browser-games.herokuapp.com/goodbrowsergames/categoria/";
 
@@ -27,6 +28,10 @@ export class CategoriaService {
 
   editarCategoria(categoria: any): Observable<any> {
     return this.http.put<any>(`${this.urlServer}editarCategoria`, categoria);
+  }
+
+  buscarPorNome(categoria: any) {
+    return this.http.post<any>(`${this.urlServer}buscarNomeCategoria`, categoria)
   }
 
 }
