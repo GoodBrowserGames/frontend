@@ -25,13 +25,4 @@ export class ListarCategoriasComponent implements OnInit {
       }
     )
   }
-
-  getCategoria() {
-
-  }
-
-  getUsuario() {
-
-  }
-
 }

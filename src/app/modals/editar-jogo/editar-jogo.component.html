@@ -1,0 +1,40 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h6 class="modal-title">Editar jogo</h6>
+    </div>
+    <div class="modal-body">
+        <!-- Nome input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="formNome">Nome</label>
+            <input type="text" id="formNome" class="form-control form-control-lg" [(ngModel)]="jogo.nome" />
+        </div>
+
+        <!-- Descricao input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="formDescricao">Descrição</label>
+            <textarea id="formDescricao" class="form-control form-control-lg" [(ngModel)]="jogo.descricao" maxlength="255"></textarea>
+        </div>
+
+        <!-- Descricao input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="formURL">URL de acesso ao jogo</label>
+            <input type="url" id="formURL" class="form-control form-control-lg" [(ngModel)]="jogo.urlJogo" />
+        </div>
+
+        <!-- Nome input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="formNome">Categoria</label>
+            <input type="text" id="formNome" class="form-control form-control-lg" [(ngModel)]="categoria.nome" />
+        </div>
+
+        <!-- Descricao input -->
+        <div class="form-outline mb-4">
+            <label class="form-label" for="formImagem">Imagem do jogo</label>
+            <!-- <input type="file" accept="image/png, image/gif, image/jpeg" id="formImagem" class="form-control form-control-lg" (change)="onFileChanged($event)" /> -->
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light m-1" (click)="close()">Fechar</button>
+        <button [disabled]="!validaJogo()" type="button" class="btn btn-success m-1" (click)="salvar()">Salvar</button>
+    </div>
+</div>

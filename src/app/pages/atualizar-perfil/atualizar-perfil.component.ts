@@ -46,7 +46,8 @@ export class AtualizarPerfilComponent implements OnInit {
       estado: this.usuario.estado,
       pais: this.usuario.pais,
       email: this.usuario.email,
-      ehAdmin: this.usuario.ehAdmin === null ? 'false' : this.usuario.ehAdmin 
+      ehAdmin: this.usuario.ehAdmin === null ? 'false' : this.usuario.ehAdmin,
+      jogos: this.usuario.jogos,      
     }  
 
     //console.log(payload);    
@@ -59,15 +60,13 @@ export class AtualizarPerfilComponent implements OnInit {
           alert('Salvo com sucesso.')
         }
       }, (error) => {
-        console.log();
-        
+        console.log(error);        
       }
     )
     
   }
 
   validaUsuario() {
-    return (this.validService.validaCampos(this.usuario) && this.validService.validaEmail(this.usuario.email) ) 
-    
+    return (this.validService.validaCampos(this.usuario));    
   }
 }

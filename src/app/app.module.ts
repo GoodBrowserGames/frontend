@@ -21,6 +21,7 @@ import { ListarCategoriasComponent } from './pages/listar-categorias/listar-cate
 import { ListarJogosRecomendadosComponent } from './pages/listar-jogos-recomendados/listar-jogos-recomendados.component';
 import { JogoComponent } from './components/jogo/jogo.component';
 import { CategoriaComponent } from './components/categoria/categoria.component';
+import { EditarJogoComponent } from './modals/editar-jogo/editar-jogo.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { CategoriaComponent } from './components/categoria/categoria.component';
     ListarJogosRecomendadosComponent,
     JogoComponent,
     CategoriaComponent,
+    EditarJogoComponent,
   ],
   imports: [
     BrowserModule,

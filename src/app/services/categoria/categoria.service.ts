@@ -21,4 +21,8 @@ export class CategoriaService {
     return this.http.get<any[]>(`${this.urlServer}listar`);
   }
 
+  buscarPorId(id: any): Observable<any> {
+    return this.http.get<any>(`${this.urlServer}buscarPorId/${id}`);
+  }
+
 }

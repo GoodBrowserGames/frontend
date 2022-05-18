@@ -6,7 +6,9 @@
         <h1 class="text-primary">
             <ngb-rating [max]="5" [(rate)]="jogo.nota" [readonly]="false" (rateChange)="avaliacao($event)"></ngb-rating>
         </h1>
-        <button type="button" class="btn btn-info m-1">Editar</button>
-        <button type="button" class="btn btn-danger m-1">Deletar</button>
+        <div *ngIf="usuario.ehAdmin">
+            <button type="button" class="btn btn-info m-1" (click)="openModalEditar(jogo)">Editar</button>
+            <button type="button" class="btn btn-danger m-1" (click)="deletarJogo(jogo)">Deletar</button>
+        </div>
     </div>
 </div>
