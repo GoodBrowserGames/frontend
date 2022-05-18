@@ -3,6 +3,20 @@
         <h6 class="modal-title">Editar jogo</h6>
     </div>
     <div class="modal-body">
+        <div class="div-img-anexo  mb-4">
+            <span>
+                {{selectedFile.url.changingThisBreaksApplicationSecurity | json}}
+                <img [src]="imageUrl" class="card-img-top" [alt]="jogo.nome">
+                <button type="button" class="btn btn-sm-rounded bg-dark" (click)="triggerFileInput()"
+                    style="position: absolute; left: 35px; top: 35px; color: white" data-dismiss="modal"
+                    aria-label="Close">
+                    📷
+                </button>
+
+                <input type="file" id="fileInput" accept="image/png, image/gif, image/jpeg"
+                    (change)="uploadImagem($event)" [hidden]="true">
+            </span>
+        </div>
         <!-- Nome input -->
         <div class="form-outline mb-4">
             <label class="form-label" for="formNome">Nome</label>
@@ -12,7 +26,8 @@
         <!-- Descricao input -->
         <div class="form-outline mb-4">
             <label class="form-label" for="formDescricao">Descrição</label>
-            <textarea id="formDescricao" class="form-control form-control-lg" [(ngModel)]="jogo.descricao" maxlength="255"></textarea>
+            <textarea id="formDescricao" class="form-control form-control-lg" [(ngModel)]="jogo.descricao"
+                maxlength="255"></textarea>
         </div>
 
         <!-- Descricao input -->
@@ -27,11 +42,6 @@
             <input type="text" id="formNome" class="form-control form-control-lg" [(ngModel)]="categoria.nome" />
         </div>
 
-        <!-- Descricao input -->
-        <div class="form-outline mb-4">
-            <label class="form-label" for="formImagem">Imagem do jogo</label>
-            <!-- <input type="file" accept="image/png, image/gif, image/jpeg" id="formImagem" class="form-control form-control-lg" (change)="onFileChanged($event)" /> -->
-        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-light m-1" (click)="close()">Fechar</button>

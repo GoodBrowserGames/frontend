@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthGuard } from 'src/app/core/auth/auth.guard';
 import { ValidService } from 'src/app/core/valid/valid.service';
@@ -20,6 +21,7 @@ export class EditarJogoComponent implements OnInit {
     nome: '',
   }
   public selectedFile: any;
+  imageUrl: string = '';
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -28,24 +30,55 @@ export class EditarJogoComponent implements OnInit {
     private categoriaService: CategoriaService,
     private usuarioService: UsuarioService,
     private authService: AuthGuard,
+    private _sanitizer: DomSanitizer,
     ) { }
 
   ngOnInit(): void {
-    this.getCategoria(this.jogo);
-    console.log(this.getImagem(`data:image/png;base64,${this.jogo.imagem}`) );
-       
+    this.getCategoria(this.jogo);   
+    this.convertBase64toImage();    
   }
 
   close(result?: any) {
     this.activeModal.close(result);
   }
 
-  salvar() {
+  convertBase64toImage() {
+    this.imageUrl = 'data:image/png;base64,' + this.jogo.imagem;
+  }
+
+  triggerFileInput() {
+    let fileInput : any = document.getElementById('fileInput')
+    fileInput.click()
+  }
+
+  uploadImagem(fileInput: any) {
+    if (fileInput.target.files && fileInput.target.files[0]) {
+      //console.log("upload")
+      this.selectedFile = null;
+      var reader = new FileReader();
+      reader.readAsDataURL(fileInput.target.files[0]);
+      reader.onload = (e: any) => {
+        this.selectedFile = {
+          name: fileInput.target.files[0].name,
+          type: fileInput.target.files[0].type,
+          url: this._sanitizer.bypassSecurityTrustResourceUrl(e.target.result.toString())
+        }
+      }
+
+      this.selectedFile = fileInput.target.files;
+      var blob = new Blob(this.selectedFile, { type: "image/png" });        
+      const uploadData = new FormData();
+      uploadData.append('myFile', blob, this.selectedFile.nome);
+      console.log(uploadData.get('myFile'));
+    }else {
+      this.selectedFile = null
+    }
+    console.log(this.selectedFile.url);
     
   }
 
   validaJogo() {
-    return this.validService.validaCampos(this.jogo) && this.categoria.nome !== '' && this.selectedFile
+    return this.validService.validaCampos(this.jogo) && this.categoria.nome !== ''
   }
 
   getCategoria(jogo: any) {
@@ -58,53 +91,24 @@ export class EditarJogoComponent implements OnInit {
     )
   }
 
-  triggerCadastroCategoria(_categoria: any) {    
-    this.categoriaService.cadastro(_categoria).subscribe(
-      (result) => {      
-        var _jogo: Jogo = {
-          nome: this.jogo.nome,
-          descricao: this.jogo.descricao,
-          urlJogo: this.jogo.descricao,
-          nota: this.jogo.nota,
-          imagem: '',
-          categoriaCodigo: result.id.toString(),
-          usuarioCodigo: this.authService.getUsuario().id.toString()
-        }   
-        this.triggerCadastroJogo(_jogo);
-        
-      }, (error) => {
-        alert('Não foi possível salvar categoria.')
-        console.log(error);        
-      }
-    )
+  salvar() {
+    console.log(this.jogo);
+    
+    //this.triggerAtualizarJogo(this.jogo)
   }
 
-  triggerCadastroJogo(_jogo: any) { 
+  triggerAtualizarJogo(_jogo: any) { 
     this.jogoService.cadastro(_jogo).subscribe(
       (result) => {
         if (this.selectedFile) {
           this.onUpload(result)
         }
         alert("Salvo com sucesso.")
-        this.triggerAtualizaUsuario(result.id);
       }, (error) => {
         alert('Não foi possível salvar jogo.')
         console.log(error);
       }
     )
-  }
-
-  triggerAtualizaUsuario(idJogo: any) {
-    //_usuario.jogos.push(idJogo);  
-    console.log(this.authService.getUsuario());
-    this.usuarioService.atualizarJogos(this.authService.getUsuario().id, idJogo).subscribe(
-      (result)=> {
-        console.log(result);        
-      }, (error) => {
-        alert('Não foi possível adicionar jogo.')
-        console.log(error);        
-      }
-    ) 
   }
 
   onUpload(jogo: Jogo) {
@@ -118,23 +122,5 @@ export class EditarJogoComponent implements OnInit {
         console.log(error);        
       }
     )
-  }
-
-  getImagem(dataUrl: any) {
-    return URL.createObjectURL(this.convertDataUrlToBlob(dataUrl))
-  }
-
-  convertDataUrlToBlob(dataUrl: any) {
-    const arr = dataUrl.split(',');
-    const mime = dataUrl.match(/:(.*?);/)[1];
-    const bstr = atob(arr[1]);
-    let n = bstr.length;
-    const u8arr = new Uint8Array(n);
-
-    while (n--) {
-        u8arr[n] = bstr.charCodeAt(n);
-    }
-
-    return new Blob([u8arr], {type: mime});
-  }
+  }  
 }

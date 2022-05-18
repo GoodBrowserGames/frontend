@@ -31,7 +31,6 @@ export class JogoComponent implements OnInit {
   }
 
   avaliacao(event: any) {    
-    console.log('avaliacao', this.jogo);
     this.jogoService.editarJogo(this.jogo).subscribe(
       (result) => {
         console.log(result);        
