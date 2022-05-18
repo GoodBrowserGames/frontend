@@ -25,4 +25,8 @@ export class CategoriaService {
     return this.http.get<any>(`${this.urlServer}buscarPorId/${id}`);
   }
 
+  editarCategoria(categoria: any): Observable<any> {
+    return this.http.put<any>(`${this.urlServer}editarCategoria`, categoria);
+  }
+
 }

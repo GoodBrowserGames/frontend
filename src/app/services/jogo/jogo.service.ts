@@ -20,6 +20,14 @@ export class JogoService {
     return this.http.get<any[]>(`${this.urlServer}listar`);
   }
 
+  buscarPorMelhoresNotas() {
+    return this.http.get<any[]>(`${this.urlServer}buscarPorMelhoresNotas`);
+  }
+
+  buscarPorPioresNotas() {
+    return this.http.get<any[]>(`${this.urlServer}buscarPorPioresNotas`);
+  }
+
   salvarImagem(jogo: Jogo, imagem: any): Observable<any> {
     return this.http.post<any>(`${this.urlServer}salvarImagem/${jogo.id}`, imagem);
   }

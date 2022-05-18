@@ -95,7 +95,18 @@ export class EditarJogoComponent implements OnInit {
 
   salvar() {
     //console.log(this.jogo);
-    this.triggerAtualizarJogo(this.jogo)
+    this.triggerAtualizarJogo(this.jogo);
+    this.triggerAtualizarCategoria(this.categoria);
+  }
+
+  triggerAtualizarCategoria(_categoria: any) {
+    this.categoriaService.editarCategoria(_categoria).subscribe(
+      (result) => {
+        console.log(result);        
+      }, (error) => {
+        console.log(error);        
+      }
+    )
   }
 
   triggerAtualizarJogo(_jogo: any) { 

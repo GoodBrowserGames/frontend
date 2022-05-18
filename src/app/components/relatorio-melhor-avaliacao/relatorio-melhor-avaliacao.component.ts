@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { JogoService } from 'src/app/services/jogo/jogo.service';
 
 @Component({
   selector: 'app-relatorio-melhor-avaliacao',
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./relatorio-melhor-avaliacao.component.css']
 })
 export class RelatorioMelhorAvaliacaoComponent implements OnInit {
+  listaJogos: any = []
 
-  constructor() { }
+  constructor(private jogoService: JogoService) { }
 
   ngOnInit(): void {
+    this.getListaJogos();
   }
 
+  getListaJogos() {
+    this.jogoService.buscarPorMelhoresNotas().subscribe(
+      (result) => { 
+          this.listaJogos = result.length > 3 ? result.slice(0,3) : result;  
+      }, (error) => {
+        console.log(error);        
+      }
+    )
+  }
 }

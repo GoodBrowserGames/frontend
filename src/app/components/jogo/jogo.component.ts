@@ -11,6 +11,7 @@ import { JogoService } from 'src/app/services/jogo/jogo.service';
 })
 export class JogoComponent implements OnInit {
   @Input() jogo: any;
+  @Input() relatorio: any;
   @Output() deleteRequest = new EventEmitter<string>();
 
   imageUrl: string = '';
