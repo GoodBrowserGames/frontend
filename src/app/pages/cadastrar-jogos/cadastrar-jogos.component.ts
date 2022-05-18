@@ -54,7 +54,7 @@ export class CadastrarJogosComponent implements OnInit {
         var _jogo: Jogo = {
           nome: this.jogo.nome,
           descricao: this.jogo.descricao,
-          urlJogo: this.jogo.descricao,
+          urlJogo: this.jogo.urlJogo,
           nota: this.jogo.nota,
           imagem: '',
           categoriaCodigo: result.id.toString(),

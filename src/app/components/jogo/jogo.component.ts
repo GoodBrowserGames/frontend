@@ -55,7 +55,7 @@ export class JogoComponent implements OnInit {
         //console.log('openModalEditar', result);       
         this.jogoService.buscarPorId(result.id).subscribe(
           (result) => {
-            console.log(result);
+            //console.log(result);
             this.jogo = result;
             this.convertBase64toImage();
             this.usuario = this.authService.getUsuario();

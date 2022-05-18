@@ -11,9 +11,7 @@ export class CategoriaComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-    console.log(this.categoria);
-    
+  ngOnInit(): void {    
   }
 
 }
