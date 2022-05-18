@@ -20,14 +20,6 @@
             <input type="url" id="formURL" class="form-control form-control-lg" [(ngModel)]="jogo.urlJogo" />
         </div>
 
-        <!-- Nota input -->
-        <div class="form-outline mb-4">
-            <label class="form-label" for="formNota">Avalie o jogo</label>            
-            <h1 class="text-primary">
-                <ngb-rating [max]="5" [(rate)]="jogo.nota" [readonly]="false"></ngb-rating>
-            </h1>
-        </div>
-
         <!-- Nome input -->
         <div class="form-outline mb-4">
             <label class="form-label" for="formNome">Categoria</label>

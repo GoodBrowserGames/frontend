@@ -1,6 +1,10 @@
 <div class="card m-2">
     <div class="card-body">
         <h5 class="card-title">Categorias</h5>
-        {{listaCategorias | json}}
+        <div class="row">
+            <div *ngFor="let item of listaCategorias" class="mx-2">
+                <app-categoria [categoria]="item"></app-categoria>
+            </div>
+        </div>
     </div>
 </div>

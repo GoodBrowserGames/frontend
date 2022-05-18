@@ -28,4 +28,8 @@ export class JogoService {
     return this.http.post<any[]>(`${this.urlServer}buscarJogo/`, jogo);
   }
 
+  editarJogo(jogo: Jogo) {
+    return this.http.put<any>(`${this.urlServer}editarJogo/`, jogo); 
+  }
+
 }
