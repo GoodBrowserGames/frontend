@@ -24,4 +24,8 @@ export class JogoService {
     return this.http.post<any>(`${this.urlServer}salvarImagem/${jogo.id}` , imagem);
   }
 
+  buscarJogo(jogo: Jogo) {
+    return this.http.post<any[]>(`${this.urlServer}buscarJogo/`, jogo);
+  }
+
 }

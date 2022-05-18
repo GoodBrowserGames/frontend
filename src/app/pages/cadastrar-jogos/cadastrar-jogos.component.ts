@@ -41,7 +41,7 @@ export class CadastrarJogosComponent implements OnInit {
   }
 
   validaJogo() {
-    return this.validService.validaCampos(this.jogo) && this.categoria.nome !== ''
+    return this.validService.validaCampos(this.jogo) && this.categoria.nome !== '' && this.selectedFile
   }
 
   cadastro() {
@@ -124,6 +124,8 @@ export class CadastrarJogosComponent implements OnInit {
       };
       reader.readAsDataURL(fileInput.target.files[0]); */
       this.selectedFile = fileInput.target.files[0];
+    } else {
+      this.selectedFile = null
     }
   }
 

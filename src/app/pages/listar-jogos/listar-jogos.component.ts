@@ -11,6 +11,7 @@ export class ListarJogosComponent implements OnInit {
   listaJogos: any = []
   categoria: any;
   usuario: any;
+  search: any = '';
 
   constructor(private jogoService: JogoService) { }
 
@@ -20,11 +21,31 @@ export class ListarJogosComponent implements OnInit {
 
   getListaJogos() {
     this.jogoService.listar().subscribe(
-      (result) => {
-        console.log(result);
-        
+      (result) => {        
         this.listaJogos = result;
       }, (error) => {
+        console.log(error);        
+      }
+    )
+  }
+
+  pesquisar() {
+    var payload = {
+      id: 0,
+      nome: this.search,
+      descricao: '',
+      urlJogo: '',
+      nota: 0,
+      imagem: '',
+      categoriaCodigo: '',
+      usuarioCodigo: ''
+    }
+    
+    this.jogoService.buscarJogo(payload).subscribe(
+      (result)=> {
+        console.log(result);
+        this.listaJogos = result;        
+      }, (error)=> {
         console.log(error);        
       }
     )
