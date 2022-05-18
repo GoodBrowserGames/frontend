@@ -7,12 +7,12 @@ import { Jogo } from 'src/app/models/jogo/jogo.model';
   providedIn: 'root'
 })
 export class JogoService {
-  
+
   urlServer = "https://app-good-browser-games.herokuapp.com/goodbrowsergames/jogo/";
 
   constructor(private http: HttpClient) { }
 
-  cadastro(jogo: Jogo) {
+  cadastro(jogo: Jogo): Observable<any> {
     return this.http.post<any>(`${this.urlServer}cadastro`, jogo);
   }
 
@@ -21,15 +21,19 @@ export class JogoService {
   }
 
   salvarImagem(jogo: Jogo, imagem: any): Observable<any> {
-    return this.http.post<any>(`${this.urlServer}salvarImagem/${jogo.id}` , imagem);
+    return this.http.post<any>(`${this.urlServer}salvarImagem/${jogo.id}`, imagem);
   }
 
-  buscarJogo(jogo: Jogo) {
+  buscarJogo(jogo: Jogo): Observable<any> {
     return this.http.post<any[]>(`${this.urlServer}buscarJogo/`, jogo);
   }
 
-  editarJogo(jogo: Jogo) {
-    return this.http.put<any>(`${this.urlServer}editarJogo/`, jogo); 
+  editarJogo(jogo: Jogo): Observable<any> {
+    return this.http.put<any>(`${this.urlServer}editarJogo/`, jogo);
+  }
+
+  buscarPorId(id: number): Observable<any> {
+    return this.http.get<any>(`${this.urlServer}buscarPorId/${id}`);
   }
 
 }

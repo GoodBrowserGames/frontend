@@ -23,7 +23,7 @@ export class JogoComponent implements OnInit {
 
   ngOnInit(): void {
     this.convertBase64toImage();
-    this.usuario = this.authService.getUsuario()
+    this.usuario = this.authService.getUsuario();
   }
 
   convertBase64toImage() {
@@ -52,8 +52,29 @@ export class JogoComponent implements OnInit {
 
     modalRef.result.then((result) => {
       if (result) {
+        //console.log('openModalEditar', result);       
+        this.jogoService.buscarPorId(result.id).subscribe(
+          (result) => {
+            console.log(result);
+            this.jogo = result;
+            this.convertBase64toImage();
+            this.usuario = this.authService.getUsuario();
+          }, (error) => {
+            console.log(error);            
+          }
+        )
       }
     });
+  }
+
+  buscarJogoPorId(id: number) {
+    this.jogoService.buscarPorId(id).subscribe(
+      (result) => {
+        console.log('buscarJogoPorId', result);        
+      }, (error) => {
+        console.log(error);        
+      }
+    )
   }
 
   deletarJogo(item: any) {

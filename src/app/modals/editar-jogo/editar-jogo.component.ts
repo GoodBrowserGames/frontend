@@ -22,6 +22,7 @@ export class EditarJogoComponent implements OnInit {
   }
   public selectedFile: any;
   imageUrl: string = '';
+  uploadData: any;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -38,7 +39,7 @@ export class EditarJogoComponent implements OnInit {
     this.convertBase64toImage();    
   }
 
-  close(result?: any) {
+  close(result?: any) {    
     this.activeModal.close(result);
   }
 
@@ -63,18 +64,19 @@ export class EditarJogoComponent implements OnInit {
           type: fileInput.target.files[0].type,
           url: this._sanitizer.bypassSecurityTrustResourceUrl(e.target.result.toString())
         }
+        const imgBase64Path = e.target.result;
+        this.imageUrl = imgBase64Path;
       }
 
       this.selectedFile = fileInput.target.files;
-      var blob = new Blob(this.selectedFile, { type: "image/png" });        
-      const uploadData = new FormData();
-      uploadData.append('myFile', blob, this.selectedFile.nome);
-      console.log(uploadData.get('myFile'));
+      var blob = new Blob(this.selectedFile, { type: "image/png" }); 
+      //console.log('blob', blob);
+             
+      this.uploadData = new FormData();
+      this.uploadData.append('myFile', blob, this.selectedFile.nome);
     }else {
       this.selectedFile = null
-    }
-    console.log(this.selectedFile.url);
-    
+    }    
   }
 
   validaJogo() {
@@ -92,18 +94,18 @@ export class EditarJogoComponent implements OnInit {
   }
 
   salvar() {
-    console.log(this.jogo);
-    
-    //this.triggerAtualizarJogo(this.jogo)
+    //console.log(this.jogo);
+    this.triggerAtualizarJogo(this.jogo)
   }
 
   triggerAtualizarJogo(_jogo: any) { 
-    this.jogoService.cadastro(_jogo).subscribe(
+    this.jogoService.editarJogo(_jogo).subscribe(
       (result) => {
         if (this.selectedFile) {
-          this.onUpload(result)
+          this.onUpload(result, this.uploadData)
         }
         alert("Salvo com sucesso.")
+        this.close(this.jogo);
       }, (error) => {
         alert('Não foi possível salvar jogo.')
         console.log(error);
@@ -111,14 +113,14 @@ export class EditarJogoComponent implements OnInit {
     )
   }
 
-  onUpload(jogo: Jogo) {
-    const uploadData = new FormData();
-    uploadData.append('myFile', this.selectedFile, this.selectedFile.nome);
-
+  onUpload(jogo: Jogo, uploadData: any) {
+    /* const uploadData = new FormData();
+    uploadData.append('myFile', this.selectedFile, this.selectedFile.nome); */
     this.jogoService.salvarImagem(jogo, uploadData).subscribe(
       (result) => {
-        console.log(result);        
+        //console.log(result);      
       }, (error) => {
+        alert('Não foi possível salvar imagem.')
         console.log(error);        
       }
     )
