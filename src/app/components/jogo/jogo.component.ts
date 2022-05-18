@@ -26,13 +26,14 @@ export class JogoComponent implements OnInit {
   ngOnInit(): void {
     this.convertBase64toImage();
     this.usuario = this.authService.getUsuario();
-    //this.getUsuarioAvaliacaoJogo(this.jogo);
+    this.getUsuarioAvaliacaoJogo(this.jogo);
   }
 
   getUsuarioAvaliacaoJogo(jogo: any) {
     this.jogoService.obtertAutorAvaliacaoJogo(jogo).subscribe(
       (result) => {
-        console.log(result);        
+        console.log(result);  
+        this.autor = result.nome;      
       }, (error) => {
         console.log(error);        
       }

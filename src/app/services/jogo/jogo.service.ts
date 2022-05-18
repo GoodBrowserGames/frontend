@@ -49,7 +49,7 @@ export class JogoService {
   }
 
   obtertAutorAvaliacaoJogo(jogo: Jogo): Observable<any> {
-    return this.http.post<any[]>(`${this.urlServer}obtertAutorAvaliacaoJogo`, jogo);
+    return this.http.post<any[]>(`${this.urlServer}obterAutorAvaliacaoJogo`, jogo);
   }
 
 }
