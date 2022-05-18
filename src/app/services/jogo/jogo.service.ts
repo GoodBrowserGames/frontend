@@ -48,4 +48,8 @@ export class JogoService {
     return this.http.delete<any>(`${this.urlServer}deletarJogo/${id}`);
   }
 
+  obtertAutorAvaliacaoJogo(jogo: Jogo): Observable<any> {
+    return this.http.post<any[]>(`${this.urlServer}obtertAutorAvaliacaoJogo`, jogo);
+  }
+
 }

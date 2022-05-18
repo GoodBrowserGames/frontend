@@ -13,7 +13,7 @@ export class JogoComponent implements OnInit {
   @Input() jogo: any;
   @Input() relatorio: any;
   @Output() deleteRequest = new EventEmitter<string>();
-
+  autor: any = '';
   imageUrl: string = '';
   usuario: any;
   
@@ -26,6 +26,17 @@ export class JogoComponent implements OnInit {
   ngOnInit(): void {
     this.convertBase64toImage();
     this.usuario = this.authService.getUsuario();
+    //this.getUsuarioAvaliacaoJogo(this.jogo);
+  }
+
+  getUsuarioAvaliacaoJogo(jogo: any) {
+    this.jogoService.obtertAutorAvaliacaoJogo(jogo).subscribe(
+      (result) => {
+        console.log(result);        
+      }, (error) => {
+        console.log(error);        
+      }
+    )
   }
 
   convertBase64toImage() {
