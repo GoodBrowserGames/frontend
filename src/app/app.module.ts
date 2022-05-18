@@ -22,6 +22,9 @@ import { ListarJogosRecomendadosComponent } from './pages/listar-jogos-recomenda
 import { JogoComponent } from './components/jogo/jogo.component';
 import { CategoriaComponent } from './components/categoria/categoria.component';
 import { EditarJogoComponent } from './modals/editar-jogo/editar-jogo.component';
+import { VerRelatoriosComponent } from './pages/ver-relatorios/ver-relatorios.component';
+import { RelatorioMelhorAvaliacaoComponent } from './components/relatorio-melhor-avaliacao/relatorio-melhor-avaliacao.component';
+import { RelatorioMelhorAvaliacaoCategoriaComponent } from './components/relatorio-melhor-avaliacao-categoria/relatorio-melhor-avaliacao-categoria.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +45,9 @@ import { EditarJogoComponent } from './modals/editar-jogo/editar-jogo.component'
     JogoComponent,
     CategoriaComponent,
     EditarJogoComponent,
+    VerRelatoriosComponent,
+    RelatorioMelhorAvaliacaoComponent,
+    RelatorioMelhorAvaliacaoCategoriaComponent,
   ],
   imports: [
     BrowserModule,

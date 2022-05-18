@@ -12,7 +12,7 @@
         </div>
         <div class="row">
             <div *ngFor="let item of listaJogos" class="col-4">
-                <app-jogo [jogo]="item" class="row"></app-jogo>
+                <app-jogo [jogo]="item" class="row" (deleteRequest)="getListaJogos()"></app-jogo>
             </div>
         </div>
     </div>

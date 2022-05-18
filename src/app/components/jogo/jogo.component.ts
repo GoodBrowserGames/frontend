@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthGuard } from 'src/app/core/auth/auth.guard';
 import { EditarJogoComponent } from 'src/app/modals/editar-jogo/editar-jogo.component';
@@ -11,6 +11,7 @@ import { JogoService } from 'src/app/services/jogo/jogo.service';
 })
 export class JogoComponent implements OnInit {
   @Input() jogo: any;
+  @Output() deleteRequest = new EventEmitter<string>();
 
   imageUrl: string = '';
   usuario: any;
@@ -78,8 +79,20 @@ export class JogoComponent implements OnInit {
   }
 
   deletarJogo(item: any) {
-    console.log(item);
-    
+    this.jogoService.deletarJogo(item.id).subscribe(
+      (result) => {
+        console.log(result); 
+        if (result) {
+          alert('Jogo removido com sucesso.')
+          this.deleteRequest.emit();
+        } else {          
+          alert('Não foi possível remover o jogo.')
+        }
+      }, (error) => {
+        alert('Não foi possível remover o jogo.')
+        console.log(error);        
+      }
+    )
   }
 
 }

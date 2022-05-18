@@ -36,4 +36,8 @@ export class JogoService {
     return this.http.get<any>(`${this.urlServer}buscarPorId/${id}`);
   }
 
+  deletarJogo(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.urlServer}deletarJogo/${id}`);
+  }
+
 }

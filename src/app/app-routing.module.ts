@@ -10,6 +10,7 @@ import { ListarJogosRecomendadosComponent } from './pages/listar-jogos-recomenda
 import { ListarJogosComponent } from './pages/listar-jogos/listar-jogos.component';
 import { LoginComponent } from './pages/login/login.component';
 import { PaginaInicialComponent } from './pages/pagina-inicial/pagina-inicial.component';
+import { VerRelatoriosComponent } from './pages/ver-relatorios/ver-relatorios.component';
 
 const routes: Routes = [
   { path: "login", component: LoginComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
     { path: "listar-jogos", component: ListarJogosComponent, canActivate: [AuthGuard] },
     { path: "listar-jogos-recomendados", component: ListarJogosRecomendadosComponent, canActivate: [AuthGuard] },
     { path: "listar-categorias", component: ListarCategoriasComponent, canActivate: [AuthGuard] },
+    { path: "ver-relatorios", component: VerRelatoriosComponent, canActivate: [AuthGuard] },
   ] },
 
   { path: '**', redirectTo: '' }
