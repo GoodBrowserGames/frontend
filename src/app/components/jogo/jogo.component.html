@@ -4,6 +4,7 @@
         <h5 class="card-title">{{jogo.nome}}</h5>
         <p class="card-text">{{jogo.descricao}}</p>
         <p class="card-text">Autor: {{userName}}</p>
+        <p class="card-text">URL: <a href="{{jogo.urlJogo}}" target="_blank">{{jogo.urlJogo}}</a></p>
         <h1 class="text-primary">
             <ngb-rating [max]="5" [(rate)]="jogo.nota" [readonly]="relatorio" (rateChange)="avaliacao($event)"></ngb-rating>
         </h1>
