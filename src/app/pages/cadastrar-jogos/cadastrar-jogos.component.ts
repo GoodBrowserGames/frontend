@@ -67,7 +67,7 @@ export class CadastrarJogosComponent implements OnInit {
             categoriaCodigo: result.id.toString(),
             usuarioCodigo: this.authService.getUsuario().id.toString()
           }   
-          console.log(_jogo);
+          //console.log(_jogo);
           
           this.triggerCadastroJogo(_jogo);
         }

@@ -32,7 +32,7 @@ export class JogoComponent implements OnInit {
   getUsuarioAvaliacaoJogo(jogo: any) {
     this.jogoService.obtertAutorAvaliacaoJogo(jogo).subscribe(
       (result) => {
-        console.log(result);  
+        //console.log(result);  
         this.userName = result.userName;      
       }, (error) => {
         console.log(error);        

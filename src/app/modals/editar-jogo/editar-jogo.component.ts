@@ -32,14 +32,15 @@ export class EditarJogoComponent implements OnInit {
     private usuarioService: UsuarioService,
     private authService: AuthGuard,
     private _sanitizer: DomSanitizer,
-    ) { }
+  ) { }
 
   ngOnInit(): void {
-    this.getCategoria(this.jogo);   
-    this.convertBase64toImage();    
+    this.jogo.imagem = this.jogo.imagem === '' ? ' ' : this.jogo.imagem
+    this.getCategoria(this.jogo);
+    this.convertBase64toImage();
   }
 
-  close(result?: any) {    
+  close(result?: any) {
     this.activeModal.close(result);
   }
 
@@ -48,7 +49,7 @@ export class EditarJogoComponent implements OnInit {
   }
 
   triggerFileInput() {
-    let fileInput : any = document.getElementById('fileInput')
+    let fileInput: any = document.getElementById('fileInput')
     fileInput.click()
   }
 
@@ -69,14 +70,14 @@ export class EditarJogoComponent implements OnInit {
       }
 
       this.selectedFile = fileInput.target.files;
-      var blob = new Blob(this.selectedFile, { type: "image/png" }); 
+      var blob = new Blob(this.selectedFile, { type: "image/png" });
       //console.log('blob', blob);
-             
+
       this.uploadData = new FormData();
       this.uploadData.append('myFile', blob, this.selectedFile.nome);
-    }else {
+    } else {
       this.selectedFile = null
-    }    
+    }
   }
 
   validaJogo() {
@@ -86,30 +87,84 @@ export class EditarJogoComponent implements OnInit {
   getCategoria(jogo: any) {
     this.categoriaService.buscarPorId(+(jogo.categoriaCodigo)).subscribe(
       (result) => {
-        this.categoria = result       
+        this.categoria = result
       }, (error) => {
-        console.log(error);     
+        console.log(error);
       }
     )
   }
 
   salvar() {
     //console.log(this.jogo);
-    this.triggerAtualizarJogo(this.jogo);
-    this.triggerAtualizarCategoria(this.categoria);
+    this.triggerVerificarCategoria(this.categoria);
+  }
+
+  triggerVerificarCategoria(_categoria: any) {
+    var payload = {
+      id: 0,
+      nome: _categoria.nome
+    }
+    this.categoriaService.buscarPorNome(payload).subscribe(
+      (result) => {        
+        console.log(result);        
+        if (!result) {
+          this.triggerCadastroCategoria(_categoria);
+        } else {
+          var _jogo: Jogo = {
+            id: this.jogo.id,
+            nome: this.jogo.nome,
+            descricao: this.jogo.descricao,
+            urlJogo: this.jogo.urlJogo,
+            nota: this.jogo.nota,
+            imagem: this.jogo.imagem,
+            categoriaCodigo: result.id.toString(),
+            usuarioCodigo: this.authService.getUsuario().id.toString()
+          }
+          console.log(_jogo);
+
+          this.triggerAtualizarJogo(_jogo);
+          //this.triggerAtualizarCategoria(this.categoria);
+
+        }
+      }, (error) => {
+        console.log(error);
+      }
+    )
+  }
+
+  triggerCadastroCategoria(_categoria: any) {
+    this.categoriaService.cadastro(_categoria).subscribe(
+      (result) => {
+        var _jogo: Jogo = {
+          id: this.jogo.id,
+          nome: this.jogo.nome,
+          descricao: this.jogo.descricao,
+          urlJogo: this.jogo.urlJogo,
+          nota: this.jogo.nota,
+          imagem: this.jogo.imagem,
+          categoriaCodigo: result.id.toString(),
+          usuarioCodigo: this.authService.getUsuario().id.toString()
+        }
+        this.triggerAtualizarJogo(_jogo);
+
+      }, (error) => {
+        alert('Não foi possível salvar categoria.')
+        console.log(error);
+      }
+    )
   }
 
   triggerAtualizarCategoria(_categoria: any) {
     this.categoriaService.editarCategoria(_categoria).subscribe(
       (result) => {
-        console.log(result);        
+        console.log(result);
       }, (error) => {
-        console.log(error);        
+        console.log(error);
       }
     )
   }
 
-  triggerAtualizarJogo(_jogo: any) { 
+  triggerAtualizarJogo(_jogo: any) {
     this.jogoService.editarJogo(_jogo).subscribe(
       (result) => {
         if (this.selectedFile) {
@@ -132,8 +187,8 @@ export class EditarJogoComponent implements OnInit {
         //console.log(result);      
       }, (error) => {
         alert('Não foi possível salvar imagem.')
-        console.log(error);        
+        console.log(error);
       }
     )
-  }  
+  }
 }
