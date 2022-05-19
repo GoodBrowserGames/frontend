@@ -52,4 +52,5 @@ export class JogoService {
     return this.http.post<any[]>(`${this.urlServer}obterAutorAvaliacaoJogo`, jogo);
   }
 
+
 }

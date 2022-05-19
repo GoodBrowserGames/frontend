@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthGuard } from 'src/app/core/auth/auth.guard';
 import { EditarJogoComponent } from 'src/app/modals/editar-jogo/editar-jogo.component';
 import { JogoService } from 'src/app/services/jogo/jogo.service';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 @Component({
   selector: 'app-jogo',
@@ -21,6 +22,7 @@ export class JogoComponent implements OnInit {
     private modalService: NgbModal,
     private jogoService: JogoService,
     private authService: AuthGuard,
+    private usuarioService: UsuarioService,
     ) { }
 
   ngOnInit(): void {
@@ -47,7 +49,14 @@ export class JogoComponent implements OnInit {
   avaliacao(event: any) {    
     this.jogoService.editarJogo(this.jogo).subscribe(
       (result) => {
-        console.log(result);        
+        console.log('editarJogo', result);   
+        this.usuarioService.inserirJogoAvaliado(+(result.usuarioCodigo), result.id).subscribe(
+          (result) => {
+            console.log('inserirJogoAvaliado', result);
+          }, (error) => {
+            console.log('error', result);
+          }
+        )     
       }, (error) => {
         console.log(error);        
       }

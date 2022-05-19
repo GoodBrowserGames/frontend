@@ -46,4 +46,8 @@ export class UsuarioService {
   atualizarJogos(idUsuario: any, idJogo: any): Observable<any> {
     return this.http.get<any>(`${this.urlServer}atualizarJogos/${idUsuario}/${idJogo}`)
   }
+  
+  inserirJogoAvaliado(idUsuario: number, idJogo: number) {
+    return this.http.get<any>(`${this.urlServer}inserirJogoAvaliado/${idUsuario}/${idJogo}`);
+  }
 }
