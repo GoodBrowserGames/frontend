@@ -52,7 +52,7 @@ export class JogoService {
     return this.http.post<any[]>(`${this.urlServer}obterAutorAvaliacaoJogo`, jogo);
   }
 
-  listaRecomendados(idUsuario: number):Observable<any> {
+  listaRecomendados(idUsuario: number): Observable<any> {
     return this.http.get<any>(`${this.urlServer}listaRecomendados/${idUsuario}`);
   }
 }
