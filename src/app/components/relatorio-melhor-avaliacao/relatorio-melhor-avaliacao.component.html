@@ -1,7 +1,7 @@
 <p>Melhores 3 avaliações de jogos</p>
 
 <div class="row">
-    <div *ngFor="let item of listaJogos" class="col-4">
+    <div *ngFor="let item of listaJogos" class="col-lg-4 col-md-3">
         <app-jogo [jogo]="item" class="row" (deleteRequest)="getListaJogos()"  [relatorio]="true"></app-jogo>
     </div>
 </div>

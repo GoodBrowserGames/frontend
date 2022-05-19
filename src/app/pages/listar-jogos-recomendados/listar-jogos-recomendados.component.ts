@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthGuard } from 'src/app/core/auth/auth.guard';
+import { JogoService } from 'src/app/services/jogo/jogo.service';
 
 @Component({
   selector: 'app-listar-jogos-recomendados',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListarJogosRecomendadosComponent implements OnInit {
 
-  constructor() { }
+  listaJogos: any = [];
+
+  constructor(
+    private jogoService: JogoService,
+    private authService: AuthGuard
+    ) { }
 
   ngOnInit(): void {
+    this.getListaJogos();
+  }
+
+  getListaJogos() {
+    this.jogoService.listaRecomendados(this.authService.getUsuario().id).subscribe(
+      (result) => {        
+        this.listaJogos = result;
+      }, (error) => {
+        console.log(error);        
+      }
+    )
   }
 
 }
