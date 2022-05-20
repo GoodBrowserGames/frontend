@@ -2,10 +2,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthGuard } from 'src/app/core/auth/auth.guard';
 import { EditarJogoComponent } from 'src/app/modals/editar-jogo/editar-jogo.component';
-import { Jogo } from 'src/app/models/jogo/jogo.model';
 import { AvaliacaoService } from 'src/app/services/avaliacao/avaliacao.service';
 import { JogoService } from 'src/app/services/jogo/jogo.service';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
+import { UtilService } from 'src/app/services/util/util.service';
 
 @Component({
   selector: 'app-jogo',
@@ -19,28 +19,31 @@ export class JogoComponent implements OnInit {
   userName: any = '';
   imageUrl: string = '';
   usuario: any;
-  
+  marcado: boolean = false;
+
   constructor(
     private modalService: NgbModal,
     private jogoService: JogoService,
     private avaliacaoService: AvaliacaoService,
     private authService: AuthGuard,
     private usuarioService: UsuarioService,
-    ) { }
+    private utilService: UtilService
+  ) { }
 
   ngOnInit(): void {
     this.convertBase64toImage();
     this.usuario = this.authService.getUsuario();
     this.getUsuarioAvaliacaoJogo(this.jogo);
+    this.verificaMarcacaoUtil();
   }
 
   getUsuarioAvaliacaoJogo(jogo: any) {
     this.jogoService.obtertAutorAvaliacaoJogo(jogo).subscribe(
       (result) => {
         //console.log(result);  
-        this.userName = result.userName;      
+        this.userName = result.userName;
       }, (error) => {
-        console.log(error);        
+        console.log(error);
       }
     )
   }
@@ -49,18 +52,13 @@ export class JogoComponent implements OnInit {
     this.imageUrl = 'data:image/png;base64,' + this.jogo.imagem;
   }
 
-  
-
-  avaliacao(event: any) {  
-    console.log('event', event);
-    console.log('this.jogo.nota', this.jogo.nota);
-    
+  avaliacao(event: any) {
     this.avaliacaoService.qtdDeAvaliacao(this.jogo, this.usuario.id, event).subscribe(
       (result) => {
         if (result) {
           this.jogo = result;
           console.log('this.jogo', this.jogo);
-          
+
           this.usuarioService.inserirJogoAvaliado(+(result.usuarioCodigo), result.id).subscribe(
             (result) => {
               console.log('inserirJogoAvaliado', result);
@@ -70,7 +68,7 @@ export class JogoComponent implements OnInit {
           )
         }
       }, (error) => {
-        console.log(error);   
+        console.log(error);
       }
     )
   }
@@ -95,7 +93,7 @@ export class JogoComponent implements OnInit {
             this.convertBase64toImage();
             this.usuario = this.authService.getUsuario();
           }, (error) => {
-            console.log(error);            
+            console.log(error);
           }
         )
       }
@@ -105,9 +103,9 @@ export class JogoComponent implements OnInit {
   buscarJogoPorId(id: number) {
     this.jogoService.buscarPorId(id).subscribe(
       (result) => {
-        console.log('buscarJogoPorId', result);        
+        console.log('buscarJogoPorId', result);
       }, (error) => {
-        console.log(error);        
+        console.log(error);
       }
     )
   }
@@ -115,18 +113,50 @@ export class JogoComponent implements OnInit {
   deletarJogo(item: any) {
     this.jogoService.deletarJogo(item.id).subscribe(
       (result) => {
-        console.log(result); 
+        console.log(result);
         if (result) {
           alert('Jogo removido com sucesso.')
           this.deleteRequest.emit();
-        } else {          
+        } else {
           alert('Não foi possível remover o jogo.')
         }
       }, (error) => {
         alert('Não foi possível remover o jogo.')
-        console.log(error);        
+        console.log(error);
       }
     )
+  }
+
+  verificaMarcacaoUtil() {
+    this.utilService.verificaMarcacao(this.jogo.id, this.usuario.id).subscribe(
+      (result) => {        
+        this.marcado = result;
+      }, (error) => {
+        console.log(error);
+      }
+    )
+  }
+
+  checkbox(event: any) {
+    if (event.target.checked) {
+      var payload = {
+        usuarioCodigo: this.usuario.id,
+        jogoCodigo: this.jogo.id
+      }
+      this.utilService.marcar(payload).subscribe(
+        (result) => {          
+        }, (error) => {
+          console.log(error);
+        }
+      )
+    } else {
+      this.utilService.desmarcar(this.jogo.id, this.usuario.id).subscribe(
+        (result) => {
+        }, (error) => {
+          console.log(error);
+        }
+      )
+    }
   }
 
 }

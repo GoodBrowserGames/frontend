@@ -9,7 +9,7 @@
             <ngb-rating [max]="5" [(rate)]="jogo.nota" [readonly]="relatorio" (rateChange)="avaliacao($event)"></ngb-rating>
         </h1>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <input class="form-check-input" type="checkbox" id="flexCheckDefault" [checked]="marcado" (click)="checkbox($event)">
             <label class="form-check-label" for="flexCheckDefault">
                 Esta avaliação foi útil para mim
             </label>

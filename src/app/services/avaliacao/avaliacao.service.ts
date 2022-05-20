@@ -7,7 +7,6 @@ import { Jogo } from 'src/app/models/jogo/jogo.model';
   providedIn: 'root'
 })
 export class AvaliacaoService {
-
   urlServer = "https://app-good-browser-games.herokuapp.com/goodbrowsergames/avaliacao/";
 
   constructor(private http: HttpClient) { }
