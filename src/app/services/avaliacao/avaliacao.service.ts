@@ -19,4 +19,8 @@ export class AvaliacaoService {
   listar(): Observable<any[]> {
     return this.http.get<any[]>(`${this.urlServer}listar`);
   }
+
+  listarPorIdJogo(idJogo: any): Observable<any[]> {
+    return this.http.get<any[]>(`${this.urlServer}listarPorIdJogo/${idJogo}`);
+  }
 }
