@@ -38,7 +38,8 @@ export class ListarJogosComponent implements OnInit {
       nota: 0,
       imagem: '',
       categoriaCodigo: '',
-      usuarioCodigo: ''
+      usuarioCodigo: '',
+      qtdDeAvaliacao: 0,
     }
     
     this.jogoService.buscarJogo(payload).subscribe(

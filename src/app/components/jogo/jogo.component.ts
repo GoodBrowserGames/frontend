@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthGuard } from 'src/app/core/auth/auth.guard';
 import { EditarJogoComponent } from 'src/app/modals/editar-jogo/editar-jogo.component';
+import { AvaliacaoService } from 'src/app/services/avaliacao/avaliacao.service';
 import { JogoService } from 'src/app/services/jogo/jogo.service';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
@@ -21,6 +22,7 @@ export class JogoComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private jogoService: JogoService,
+    private avaliacaoService: AvaliacaoService,
     private authService: AuthGuard,
     private usuarioService: UsuarioService,
     ) { }
@@ -46,8 +48,29 @@ export class JogoComponent implements OnInit {
     this.imageUrl = 'data:image/png;base64,' + this.jogo.imagem;
   }
 
-  avaliacao(event: any) {    
-    this.jogoService.editarJogo(this.jogo).subscribe(
+  avaliacao(event: any) {  
+    console.log('event', event);
+    console.log('this.jogo.nota', this.jogo.nota);
+    
+    this.avaliacaoService.qtdDeAvaliacao(this.jogo, this.usuario.id, event).subscribe(
+      (result) => {
+        if (result) {
+          this.jogo = result;
+          console.log('this.jogo', this.jogo);
+          
+          this.usuarioService.inserirJogoAvaliado(+(result.usuarioCodigo), result.id).subscribe(
+            (result) => {
+              console.log('inserirJogoAvaliado', result);
+            }, (error) => {
+              console.log('error', result);
+            }
+          )
+        }
+      }, (error) => {
+        console.log(error);   
+      }
+    )
+    /* this.jogoService.editarJogo(this.jogo).subscribe(
       (result) => {
         console.log('editarJogo', result);   
         this.usuarioService.inserirJogoAvaliado(+(result.usuarioCodigo), result.id).subscribe(
@@ -60,7 +83,7 @@ export class JogoComponent implements OnInit {
       }, (error) => {
         console.log(error);        
       }
-    ) 
+    ) */ 
   }
 
   openModalEditar(item: any) {

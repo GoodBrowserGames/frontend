@@ -20,6 +20,7 @@ export class CadastrarJogosComponent implements OnInit {
     urlJogo: '',
     nota: 0,
     imagem: ' ',
+    qtdDeAvaliacao: 0
   }
 
   categoria: Categoria = {
@@ -65,7 +66,8 @@ export class CadastrarJogosComponent implements OnInit {
             nota: this.jogo.nota,
             imagem: '',
             categoriaCodigo: result.id.toString(),
-            usuarioCodigo: this.authService.getUsuario().id.toString()
+            usuarioCodigo: this.authService.getUsuario().id.toString(),
+            qtdDeAvaliacao: this.jogo.qtdDeAvaliacao,
           }   
           //console.log(_jogo);
           
@@ -87,7 +89,9 @@ export class CadastrarJogosComponent implements OnInit {
           nota: this.jogo.nota,
           imagem: '',
           categoriaCodigo: result.id.toString(),
-          usuarioCodigo: this.authService.getUsuario().id.toString()
+          usuarioCodigo: this.authService.getUsuario().id.toString(),
+          qtdDeAvaliacao: this.jogo.qtdDeAvaliacao
+
         }   
         this.triggerCadastroJogo(_jogo);
         
@@ -134,6 +138,7 @@ export class CadastrarJogosComponent implements OnInit {
       urlJogo: '',
       nota: 0,
       imagem: ' ',
+      qtdDeAvaliacao: 0
     }
     this.categoria = {
       nome: ''

@@ -118,7 +118,8 @@ export class EditarJogoComponent implements OnInit {
             nota: this.jogo.nota,
             imagem: this.jogo.imagem,
             categoriaCodigo: result.id.toString(),
-            usuarioCodigo: this.authService.getUsuario().id.toString()
+            usuarioCodigo: this.authService.getUsuario().id.toString(),
+            qtdDeAvaliacao: this.jogo.qtdDeAvaliacao
           }
           console.log(_jogo);
 
@@ -143,7 +144,8 @@ export class EditarJogoComponent implements OnInit {
           nota: this.jogo.nota,
           imagem: this.jogo.imagem,
           categoriaCodigo: result.id.toString(),
-          usuarioCodigo: this.authService.getUsuario().id.toString()
+          usuarioCodigo: this.authService.getUsuario().id.toString(),
+          qtdDeAvaliacao: this.jogo.qtdDeAvaliacao
         }
         this.triggerAtualizarJogo(_jogo);
 

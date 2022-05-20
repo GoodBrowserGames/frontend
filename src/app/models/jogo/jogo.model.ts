@@ -7,6 +7,7 @@ export class Jogo {
     imagem: string;
     categoriaCodigo: string;
     usuarioCodigo: string;
+    qtdDeAvaliacao: number;
 
     constructor(
         nome: string, 
@@ -15,7 +16,8 @@ export class Jogo {
         nota: number,
         imagem: string,
         categoriaCodigo: string,
-        usuarioCodigo: string
+        usuarioCodigo: string,
+        qtdDeAvaliacao: number
         ) {
         this.nome = nome;
         this.descricao = descricao;
@@ -24,5 +26,6 @@ export class Jogo {
         this.imagem = imagem;
         this.categoriaCodigo = categoriaCodigo;
         this.usuarioCodigo = usuarioCodigo;
+        this.qtdDeAvaliacao = qtdDeAvaliacao;
     }
 }
