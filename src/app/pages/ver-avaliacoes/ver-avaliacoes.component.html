@@ -3,8 +3,9 @@
         <h5 class="card-title">Outras avaliações</h5>
         <div class="row">
             <div *ngFor="let item of listaAvaliacao" class="col-lg-4 col-md-3">
-                <app-jogo-avaliacao  [usuarioCodigo]="item.usuarioCodigo" [jogoCodigo]="item.jogoCodigo" [nota]="item.nota" [relatorio]="true"></app-jogo-avaliacao>
+                <app-jogo-avaliacao [usuarioCodigo]="item.usuarioCodigo" [jogoCodigo]="item.jogoCodigo"
+                    [nota]="item.nota" [relatorio]="true"></app-jogo-avaliacao>
             </div>
         </div>
-    </div>    
+    </div>
 </div>

@@ -3,7 +3,8 @@
         <h5 class="card-title">Jogos com avaliações mais úteis</h5>
         <div class="row">
             <div *ngFor="let item of listaJogos" class="col-lg-4 col-md-3">
-                <app-jogo [jogo]="item" class="row" [relatorio]="false"></app-jogo>
+                <app-jogo-avaliacao [usuarioCodigo]="item.usuarioCodigo" [jogoCodigo]="item.jogoCodigo"
+                     [relatorio]="true"></app-jogo-avaliacao>
             </div>
         </div>
     </div>

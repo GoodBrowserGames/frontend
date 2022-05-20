@@ -28,11 +28,18 @@ export class JogoAvaliacaoComponent implements OnInit {
     this.buscarUsuario(this.usuarioCodigo);
   }
 
+  getNota() {
+
+  }
+
   buscarJogo(id: any) {  
     this.jogoService.buscarPorId(+(id)).subscribe(
       (result) => {
         this.jogo = result; 
-        this.convertBase64toImage(this.jogo.imagem);      
+        this.convertBase64toImage(this.jogo.imagem);     
+        if (!this.nota) {
+          this.nota = this.jogo.nota
+        } 
       }, (error) => {
         console.log(error);
       }

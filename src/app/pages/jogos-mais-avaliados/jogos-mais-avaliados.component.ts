@@ -19,7 +19,8 @@ export class JogosMaisAvaliadosComponent implements OnInit {
   getListaJogos() {
     this.utilService.listar().subscribe(
       (result) => {
-        console.log(result);        
+        console.log(result);  
+        this.listaJogos = result;      
       }, (error) => {
         console.log(error);        
       }
