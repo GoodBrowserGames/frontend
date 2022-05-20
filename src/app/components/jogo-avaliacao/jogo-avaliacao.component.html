@@ -6,14 +6,10 @@
         <p class="card-text">Autor: {{usuario.userName}}</p>
         <p class="card-text">URL: <a href="{{jogo.urlJogo}}" target="_blank">{{jogo.urlJogo}}</a></p>
         <h1 class="text-primary">
-            <ngb-rating [max]="5" [(rate)]="nota" [readonly]="relatorio" (rateChange)="avaliacao($event)"></ngb-rating>
+            <ngb-rating [max]="5" [(rate)]="nota" [readonly]="relatorio"></ngb-rating>
         </h1>
-        <div>
+        <div *ngIf="relatorio === false">
             <a role="button" class="btn btn-info m-1"  [routerLink]="['/ver-avaliacoes/'+jogo.id]">Ver outras avaliações desse jogo</a>
-        </div>
-        <div *ngIf="usuario.ehAdmin && relatorio === false">
-            <button class="btn btn-info m-1" (click)="openModalEditar(jogo)">Editar</button>
-            <button class="btn btn-danger m-1" (click)="deletarJogo(jogo)">Deletar</button>
         </div>
     </div>
 </div>

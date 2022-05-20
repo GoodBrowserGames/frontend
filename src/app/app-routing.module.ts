@@ -5,6 +5,7 @@ import { AuthGuard } from './core/auth/auth.guard';
 import { AtualizarPerfilComponent } from './pages/atualizar-perfil/atualizar-perfil.component';
 import { CadastrarJogosComponent } from './pages/cadastrar-jogos/cadastrar-jogos.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
+import { JogosMaisAvaliadosComponent } from './pages/jogos-mais-avaliados/jogos-mais-avaliados.component';
 import { ListarCategoriasComponent } from './pages/listar-categorias/listar-categorias.component';
 import { ListarJogosRecomendadosComponent } from './pages/listar-jogos-recomendados/listar-jogos-recomendados.component';
 import { ListarJogosComponent } from './pages/listar-jogos/listar-jogos.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
     { path: "listar-categorias", component: ListarCategoriasComponent, canActivate: [AuthGuard] },
     { path: "ver-relatorios", component: VerRelatoriosComponent, canActivate: [AuthGuard] },
     { path: "ver-avaliacoes/:id", component: VerAvaliacoesComponent, canActivate: [AuthGuard] },
+    { path: "jogos-mais-avaliados", component: JogosMaisAvaliadosComponent, canActivate: [AuthGuard] },
   ] },
 
   { path: '**', redirectTo: '' }

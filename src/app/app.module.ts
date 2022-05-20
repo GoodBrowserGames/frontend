@@ -27,6 +27,7 @@ import { RelatorioMelhorAvaliacaoComponent } from './components/relatorio-melhor
 import { RelatorioPiorAvaliacaoComponent } from './components/relatorio-pior-avaliacao/relatorio-pior-avaliacao.component';
 import { VerAvaliacoesComponent } from './pages/ver-avaliacoes/ver-avaliacoes.component';
 import { JogoAvaliacaoComponent } from './components/jogo-avaliacao/jogo-avaliacao.component';
+import { JogosMaisAvaliadosComponent } from './pages/jogos-mais-avaliados/jogos-mais-avaliados.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +52,7 @@ import { JogoAvaliacaoComponent } from './components/jogo-avaliacao/jogo-avaliac
     RelatorioPiorAvaliacaoComponent,
     VerAvaliacoesComponent,
     JogoAvaliacaoComponent,
+    JogosMaisAvaliadosComponent,
   ],
   imports: [
     BrowserModule,
