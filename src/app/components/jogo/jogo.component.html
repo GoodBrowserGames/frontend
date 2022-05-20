@@ -6,7 +6,11 @@
         <p class="card-text">Autor: {{userName}}</p>
         <p class="card-text">URL: <a href="{{jogo.urlJogo}}" target="_blank">{{jogo.urlJogo}}</a></p>
         <h1 class="text-primary">
-            <ngb-rating [max]="5" [(rate)]="jogo.nota" [readonly]="relatorio" (rateChange)="avaliacao($event)"></ngb-rating>
+            <ngb-rating [max]="5" [(rate)]="jogo.nota" [readonly]="relatorio" (rateChange)="avaliacao($event)">
+                <ng-template let-fill="fill" let-index="index">
+                    <span class="star" [class.filled]="fill === 100" [class.bad]="index < indexado()">&#9733;</span>
+                  </ng-template>
+            </ngb-rating>
         </h1>
         <div class="form-check">
             <input class="form-check-input" type="checkbox" id="flexCheckDefault" [checked]="marcado" (click)="checkbox($event)">

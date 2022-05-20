@@ -37,6 +37,10 @@ export class JogoComponent implements OnInit {
     this.verificaMarcacaoUtil();
   }
 
+  indexado() {
+    return this.jogo.nota;
+  }
+
   getUsuarioAvaliacaoJogo(jogo: any) {
     this.jogoService.obtertAutorAvaliacaoJogo(jogo).subscribe(
       (result) => {
@@ -57,11 +61,8 @@ export class JogoComponent implements OnInit {
       (result) => {
         if (result) {
           this.jogo = result;
-          console.log('this.jogo', this.jogo);
-
           this.usuarioService.inserirJogoAvaliado(+(result.usuarioCodigo), result.id).subscribe(
             (result) => {
-              console.log('inserirJogoAvaliado', result);
             }, (error) => {
               console.log('error', result);
             }

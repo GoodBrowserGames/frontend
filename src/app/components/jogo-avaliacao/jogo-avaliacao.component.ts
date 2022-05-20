@@ -28,8 +28,8 @@ export class JogoAvaliacaoComponent implements OnInit {
     this.buscarUsuario(this.usuarioCodigo);
   }
 
-  getNota() {
-
+  indexado() {
+    return this.jogo.nota
   }
 
   buscarJogo(id: any) {  
