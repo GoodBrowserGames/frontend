@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EditarCategoriaComponent } from 'src/app/modals/editar-categoria/editar-categoria.component';
 import { CategoriaService } from 'src/app/services/categoria/categoria.service';
 
 @Component({
@@ -10,7 +12,8 @@ export class ListarCategoriasComponent implements OnInit {
 
   listaCategorias: any[] = [];
 
-  constructor(private categoriaService: CategoriaService) { }
+  constructor(private categoriaService: CategoriaService,
+    private modalService: NgbModal,) { }
 
   ngOnInit(): void {
     this.getListaCategorias();
@@ -24,5 +27,24 @@ export class ListarCategoriasComponent implements OnInit {
         console.log(error);        
       }
     )
+  }
+
+  openModal(item: any) {    
+    const modalRef = this.modalService.open(EditarCategoriaComponent, {
+      backdrop: "static",
+      keyboard: true,
+      scrollable: false,
+      size: "sm",
+    });
+
+    modalRef.componentInstance.categoria = item;
+
+    modalRef.result.then((result) => {
+      if (result) {
+        //console.log('openModalEditar', result);
+        this.getListaCategorias();      
+        
+      }
+    });
   }
 }
