@@ -59,9 +59,11 @@ export class JogoComponent implements OnInit {
   avaliacao(event: any) {
     this.avaliacaoService.qtdDeAvaliacao(this.jogo, this.usuario.id, event).subscribe(
       (result) => {
-        if (result) {
+        if (result) {          
           this.jogo = result;
-          this.usuarioService.inserirJogoAvaliado(+(result.usuarioCodigo), result.id).subscribe(
+          console.log(result);
+          
+          this.usuarioService.inserirJogoAvaliado(+(this.usuario.id), result.id).subscribe(
             (result) => {
             }, (error) => {
               console.log('error', result);
