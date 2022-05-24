@@ -24,4 +24,8 @@ export class RelatorioMelhorAvaliacaoComponent implements OnInit {
       }
     )
   }
+
+  verificaTamanhoLista() {
+    return this.listaJogos.length > 0;
+  }
 }
