@@ -4,6 +4,6 @@
     <app-jogo [jogo]="item" (deleteRequest)="getListaJogos()" [relatorio]="true"></app-jogo>
 </div>
 
-<div *ngIf="verificaTamanhoLista()">
-    Nenhum jogo relacionado com o critério.
+<div *ngIf="!verificaTamanhoLista()">
+    Nenhum jogo relacionado a esse critério.
 </div>
