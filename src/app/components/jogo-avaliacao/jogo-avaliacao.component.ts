@@ -33,7 +33,7 @@ export class JogoAvaliacaoComponent implements OnInit {
   }
 
   verificaMarcacaoUtil() {
-    this.utilService.verificaMarcacao(this.jogo.id, this.usuario.id).subscribe(
+    this.utilService.verificaMarcacao(+(this.jogoCodigo), +(this.usuarioCodigo)).subscribe(
       (result) => {        
         this.marcado = result;
       }, (error) => {
@@ -41,7 +41,7 @@ export class JogoAvaliacaoComponent implements OnInit {
       }
     )
   }
-  
+
   checkbox(event: any) {
     if (event.target.checked) {
       var payload = {
