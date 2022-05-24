@@ -18,21 +18,13 @@ export class JogoService {
 
   listar(): Observable<any[]> {
     return this.http.get<any[]>(`${this.urlServer}listar`);
-  }
-
-  buscarPorMelhoresNotas() {
-    return this.http.get<any[]>(`${this.urlServer}buscarPorMelhoresNotas`);
-  }
-
-  buscarPorPioresNotas() {
-    return this.http.get<any[]>(`${this.urlServer}buscarPorPioresNotas`);
-  }
+  }  
 
   salvarImagem(jogo: Jogo, imagem: any): Observable<any> {
     return this.http.post<any>(`${this.urlServer}salvarImagem/${jogo.id}`, imagem);
   }
 
-  buscarJogo(jogo: Jogo): Observable<any> {
+  buscarJogo(jogo: Jogo): Observable<any[]> {
     return this.http.post<any[]>(`${this.urlServer}buscarJogo/`, jogo);
   }
 
@@ -49,10 +41,30 @@ export class JogoService {
   }
 
   obtertAutorAvaliacaoJogo(jogo: Jogo): Observable<any> {
-    return this.http.post<any[]>(`${this.urlServer}obterAutorAvaliacaoJogo`, jogo);
+    return this.http.post<any>(`${this.urlServer}obterAutorAvaliacaoJogo`, jogo);
   }
 
-  listaRecomendados(idUsuario: number): Observable<any> {
-    return this.http.get<any>(`${this.urlServer}listaRecomendados/${idUsuario}`);
+  listaRecomendados(idUsuario: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.urlServer}listaRecomendados/${idUsuario}`);
+  }
+
+  buscarPorPioresNotas(): Observable<any[]>  {
+    return this.http.get<any[]>(`${this.urlServer}buscarPorPioresNotas`);
+  }
+
+  buscarPorMelhoresNotas(): Observable<any[]>  {
+    return this.http.get<any[]>(`${this.urlServer}buscarPorMelhoresNotas`);
+  }
+
+  buscarPorMelhoresCategorias(): Observable<any[]>  {
+    return this.http.get<any[]>(`${this.urlServer}buscarPorMelhoresCategorias`);
+  }
+
+  buscarMembrosMaiorNumeroAvaliacao() : Observable<any[]> {
+    return this.http.get<any[]>(`${this.urlServer}buscarMembrosMaiorNumeroAvaliacao`);
+  }
+
+  buscarQtdAvaliacao() : Observable<any[]> {    
+    return this.http.get<any[]>(`${this.urlServer}buscarQtdAvaliacao`);
   }
 }

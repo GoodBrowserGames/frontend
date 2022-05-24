@@ -1,4 +1,4 @@
-<p>Avaliações de jogos com melhores médias com pelo menos 4 avaliações</p>
+<p>Jogos com maiores números de avaliações</p>
 
 <div *ngFor="let item of listaJogos">
     <app-jogo [jogo]="item" (deleteRequest)="getListaJogos()" [relatorio]="true"></app-jogo>

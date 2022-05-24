@@ -29,6 +29,9 @@ import { VerAvaliacoesComponent } from './pages/ver-avaliacoes/ver-avaliacoes.co
 import { JogoAvaliacaoComponent } from './components/jogo-avaliacao/jogo-avaliacao.component';
 import { JogosMaisAvaliadosComponent } from './pages/jogos-mais-avaliados/jogos-mais-avaliados.component';
 import { EditarCategoriaComponent } from './modals/editar-categoria/editar-categoria.component';
+import { RelatorioMaiorNumeroAvaliacaoComponent } from './components/relatorio-maior-numero-avaliacao/relatorio-maior-numero-avaliacao.component';
+import { RelatorioMembrosMaisAvaliaramComponent } from './components/relatorio-membros-mais-avaliaram/relatorio-membros-mais-avaliaram.component';
+import { RelatorioCategoriasMaisAvaliacoesComponent } from './components/relatorio-categorias-mais-avaliacoes/relatorio-categorias-mais-avaliacoes.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +58,9 @@ import { EditarCategoriaComponent } from './modals/editar-categoria/editar-categ
     JogoAvaliacaoComponent,
     JogosMaisAvaliadosComponent,
     EditarCategoriaComponent,
+    RelatorioMaiorNumeroAvaliacaoComponent,
+    RelatorioMembrosMaisAvaliaramComponent,
+    RelatorioCategoriasMaisAvaliacoesComponent,
   ],
   imports: [
     BrowserModule,

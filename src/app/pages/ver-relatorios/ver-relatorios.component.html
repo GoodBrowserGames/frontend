@@ -1,7 +1,14 @@
 <div class="card m-2">
     <div class="card-body">
         <h5 class="card-title">Relatórios</h5>
-        <app-relatorio-melhor-avaliacao></app-relatorio-melhor-avaliacao>
-        <app-relatorio-pior-avaliacao></app-relatorio-pior-avaliacao>
+        <div class="row">
+            <app-relatorio-maior-numero-avaliacao class="border-right col-8 px-2 mx-2"></app-relatorio-maior-numero-avaliacao>
+            <app-relatorio-membros-mais-avaliaram class="col-3"></app-relatorio-membros-mais-avaliaram>
+        </div>
+        <hr>
+        <div class="row">
+            <app-relatorio-melhor-avaliacao class="border-right col-8 px-2 mx-2"></app-relatorio-melhor-avaliacao>
+            <app-relatorio-categorias-mais-avaliacoes class="col-3"></app-relatorio-categorias-mais-avaliacoes>
+        </div>        
     </div>
 </div>
