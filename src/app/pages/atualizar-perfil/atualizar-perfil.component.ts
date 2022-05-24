@@ -48,7 +48,8 @@ export class AtualizarPerfilComponent implements OnInit {
       pais: this.usuario.pais,
       email: this.usuario.email,
       ehAdmin: this.usuario.ehAdmin === null ? 'false' : this.usuario.ehAdmin,
-      jogos: this.usuario.jogos,      
+      jogos: this.usuario.jogos,    
+      qtdJogosAvaliados: this.usuario.qtdJogosAvaliados === null ? 0: this.usuario.qtdJogosAvaliados,
     }  
 
     //console.log(payload);    
@@ -63,8 +64,7 @@ export class AtualizarPerfilComponent implements OnInit {
       }, (error) => {
         console.log(error);        
       }
-    )
-    
+    )    
   }
 
   validaUsuario() {
