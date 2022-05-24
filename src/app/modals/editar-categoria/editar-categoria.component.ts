@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ValidService } from 'src/app/core/valid/valid.service';
+import { Categoria } from 'src/app/models/categoria/categoria.model';
 import { CategoriaService } from 'src/app/services/categoria/categoria.service';
 
 @Component({
@@ -11,6 +12,10 @@ import { CategoriaService } from 'src/app/services/categoria/categoria.service';
 export class EditarCategoriaComponent implements OnInit {
 
   @Input() categoria: any;
+  novaCategoria: Categoria = {
+    nome: '',
+    qtdCategoriaAvaliada: 0
+  }
   atualizando: boolean = false;
 
   constructor(
@@ -19,6 +24,7 @@ export class EditarCategoriaComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.novaCategoria = this.categoria;
   }
 
   close() {
@@ -30,19 +36,20 @@ export class EditarCategoriaComponent implements OnInit {
   }
 
   salvar() {
-    //console.log(this.categoria);
-
     this.atualizando = true;
     
-    this.categoriaService.editarCategoria(this.categoria).subscribe(
+    this.categoriaService.editarCategoria(this.novaCategoria).subscribe(
       (result) => {
         if (result) {
           alert('Categoria alterada com sucesso.');
-          this.activeModal.close();
-        }        
-        this.atualizando = true;
+          this.activeModal.close();   
+        } else {
+          alert('Nome já em uso.')
+        } 
+        this.atualizando = false;
       }, (error) => {
-        this.atualizando = true;
+        this.atualizando = false;
+        alert('Ocorreu um erro.')
         console.log(error);        
       }
     )

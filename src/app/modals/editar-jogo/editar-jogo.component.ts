@@ -19,6 +19,7 @@ export class EditarJogoComponent implements OnInit {
   @Input() jogo: any;
   categoria: Categoria = {
     nome: '',
+    qtdCategoriaAvaliada: 0
   }
   public selectedFile: any;
   imageUrl: string = '';

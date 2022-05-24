@@ -25,6 +25,7 @@ export class CadastrarJogosComponent implements OnInit {
 
   categoria: Categoria = {
     nome: '',
+    qtdCategoriaAvaliada: 0,
   }
 
   public selectedFile: any;
@@ -52,7 +53,8 @@ export class CadastrarJogosComponent implements OnInit {
   triggerVerificarCategoria(_categoria: any) {   
     var payload = {
       id: 0,
-      nome: _categoria.nome
+      nome: _categoria.nome,
+      qtdCategoriaAvaliada: 0
     } 
     this.categoriaService.buscarPorNome(payload).subscribe(
       (result) => {
@@ -141,7 +143,8 @@ export class CadastrarJogosComponent implements OnInit {
       qtdDeAvaliacao: 0
     }
     this.categoria = {
-      nome: ''
+      nome: '',
+      qtdCategoriaAvaliada: 0
     }
   }
 
