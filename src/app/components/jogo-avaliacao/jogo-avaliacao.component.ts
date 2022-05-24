@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { JogoService } from 'src/app/services/jogo/jogo.service';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
+import { UtilService } from 'src/app/services/util/util.service';
 
 @Component({
   selector: 'app-jogo-avaliacao',
@@ -17,15 +18,50 @@ export class JogoAvaliacaoComponent implements OnInit {
   jogo: any = {};
   imageUrl: string = '';
   usuario: any = {};
+  marcado: boolean = false;
 
   constructor(
     private jogoService: JogoService,
     private usuarioService: UsuarioService,
+    private utilService: UtilService
     ) { }
 
   ngOnInit(): void {
     this.buscarJogo(this.jogoCodigo);
     this.buscarUsuario(this.usuarioCodigo);
+    this.verificaMarcacaoUtil();
+  }
+
+  verificaMarcacaoUtil() {
+    this.utilService.verificaMarcacao(this.jogo.id, this.usuario.id).subscribe(
+      (result) => {        
+        this.marcado = result;
+      }, (error) => {
+        console.log(error);
+      }
+    )
+  }
+  
+  checkbox(event: any) {
+    if (event.target.checked) {
+      var payload = {
+        usuarioCodigo: this.usuario.id,
+        jogoCodigo: this.jogo.id
+      }
+      this.utilService.marcar(payload).subscribe(
+        (result) => {          
+        }, (error) => {
+          console.log(error);
+        }
+      )
+    } else {
+      this.utilService.desmarcar(this.jogo.id, this.usuario.id).subscribe(
+        (result) => {
+        }, (error) => {
+          console.log(error);
+        }
+      )
+    }
   }
 
   indexado() {

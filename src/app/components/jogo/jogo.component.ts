@@ -104,7 +104,7 @@ export class JogoComponent implements OnInit {
   buscarJogoPorId(id: number) {
     this.jogoService.buscarPorId(id).subscribe(
       (result) => {
-        console.log('buscarJogoPorId', result);
+        //console.log('buscarJogoPorId', result);
       }, (error) => {
         console.log(error);
       }
@@ -114,7 +114,7 @@ export class JogoComponent implements OnInit {
   deletarJogo(item: any) {
     this.jogoService.deletarJogo(item.id).subscribe(
       (result) => {
-        console.log(result);
+        //console.log(result);
         if (result) {
           alert('Jogo removido com sucesso.')
           this.deleteRequest.emit();
