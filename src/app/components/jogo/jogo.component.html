@@ -21,7 +21,7 @@
         <div>
             <a role="button" class="btn btn-info m-1"  [routerLink]="['/ver-avaliacoes/'+jogo.id]">Ver outras avaliações desse jogo</a>
         </div>
-        <div *ngIf="usuario.ehAdmin && relatorio === false">
+        <div *ngIf="usuario.ehAdmin === 'true' && relatorio === false">
             <button class="btn btn-info m-1" (click)="openModalEditar(jogo)">Editar</button>
             <button class="btn btn-danger m-1" (click)="deletarJogo(jogo)">Deletar</button>
         </div>

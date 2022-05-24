@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthGuard } from 'src/app/core/auth/auth.guard';
 import { EditarCategoriaComponent } from 'src/app/modals/editar-categoria/editar-categoria.component';
 import { CategoriaService } from 'src/app/services/categoria/categoria.service';
 
@@ -11,12 +12,17 @@ import { CategoriaService } from 'src/app/services/categoria/categoria.service';
 export class ListarCategoriasComponent implements OnInit {
 
   listaCategorias: any[] = [];
+  usuario: any;
 
-  constructor(private categoriaService: CategoriaService,
-    private modalService: NgbModal,) { }
+  constructor(
+    private categoriaService: CategoriaService,
+    private modalService: NgbModal,
+    private authService: AuthGuard
+    ) { }
 
   ngOnInit(): void {
     this.getListaCategorias();
+    this.usuario = this.authService.getUsuario();
   }
 
   getListaCategorias() {
@@ -30,21 +36,23 @@ export class ListarCategoriasComponent implements OnInit {
   }
 
   openModal(item: any) {    
-    const modalRef = this.modalService.open(EditarCategoriaComponent, {
-      backdrop: "static",
-      keyboard: true,
-      scrollable: false,
-      size: "sm",
-    });
-
-    modalRef.componentInstance.categoria = item;
-
-    modalRef.result.then((result) => {
-      if (result) {
-        //console.log('openModalEditar', result);
-        this.getListaCategorias();      
-        
-      }
-    });
+    if (this.usuario.ehAdmin === 'true') {
+      const modalRef = this.modalService.open(EditarCategoriaComponent, {
+        backdrop: "static",
+        keyboard: true,
+        scrollable: false,
+        size: "sm",
+      });
+  
+      modalRef.componentInstance.categoria = item;
+  
+      modalRef.result.then((result) => {
+        if (result) {
+          //console.log('openModalEditar', result);
+          this.getListaCategorias(); 
+        }
+      });
+    }
+    
   }
 }
