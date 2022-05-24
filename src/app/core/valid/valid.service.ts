@@ -11,7 +11,7 @@ export class ValidService {
     var aux = true;
     for (const key in object) {
       if (
-        object[key] === null ||
+        (key !== 'qtdJogosAvaliados' && object[key] === null) ||
         object[key] === '' ||
         object[key] === undefined) {
         aux = false;
