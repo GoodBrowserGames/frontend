@@ -19,7 +19,8 @@ export class LoginComponent implements OnInit {
     estado: '',
     pais: '',
     email: '',
-    ehAdmin: ''
+    ehAdmin: '',
+    qtdJogosAvaliados: 0
   }
   logando: boolean = true;
 

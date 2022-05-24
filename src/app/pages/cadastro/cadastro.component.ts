@@ -20,7 +20,8 @@ export class CadastroComponent implements OnInit {
     estado: '',
     pais: '',
     email: '',
-    ehAdmin: 'false'
+    ehAdmin: 'false',
+    qtdJogosAvaliados: 0
   }
   cadastrando: boolean = true;
   isAdmin = false;

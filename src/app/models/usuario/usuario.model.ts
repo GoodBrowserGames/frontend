@@ -8,6 +8,7 @@ export class Usuario {
     pais: string;
     email: string;
     ehAdmin: string;
+    qtdJogosAvaliados: number;
 
     jogos?: any[];
 
@@ -19,7 +20,8 @@ export class Usuario {
         estado: string,
         pais: string,
         email: string,
-        ehAdmin: string
+        ehAdmin: string,
+        qtdJogosAvaliados: number,
         ) {
         this.nome = nome;
         this.userName = userName;
@@ -29,5 +31,6 @@ export class Usuario {
         this.pais = pais;
         this.email = email;
         this.ehAdmin = ehAdmin;
+        this.qtdJogosAvaliados = qtdJogosAvaliados;
     }
 }

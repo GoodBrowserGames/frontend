@@ -18,6 +18,7 @@ export class PerfilMenuComponent implements OnInit {
     pais: '',
     email: '',
     ehAdmin: 'false',
+    qtdJogosAvaliados: 0,
   };
 
   constructor(
