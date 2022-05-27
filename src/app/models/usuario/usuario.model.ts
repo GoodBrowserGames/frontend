@@ -8,6 +8,7 @@ export class Usuario {
     pais: string;
     email: string;
     ehAdmin: string;
+    jogosAvaliados?: any[];
     qtdJogosAvaliados: number;
 
     jogos?: any[];
